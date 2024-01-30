@@ -4,6 +4,7 @@ import Home from "./Home";
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Info from "./Info";
+import Profile from "./Profile";
 function App() {
   return (
     <div className="App">
@@ -13,6 +14,7 @@ function App() {
       <Route path="/SignUp" element={<Signup/>} />
       <Route path="/SignIn" element={<Signin/>} />
       <Route path="/Info" element={<Info/>} />
+      <Route path="/Profile" element={<Profile/>} />
     </Routes>
     </BrowserRouter>
     </div>
