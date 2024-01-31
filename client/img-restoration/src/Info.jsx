@@ -1,10 +1,54 @@
 import React from 'react'
 import pic_3 from './assets/pic_3.jpg'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 const Info = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    responsive:[]
+  };
+  const data = [
+    {
+      name: `Image Restoration`,
+      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+    },
+    {
+      name: `Watermark Remover`,
+      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+    },
+    {
+      name: `Collage Maker`,
+      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+    },
+    {
+      name: `Image Slider`,
+      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+    },
+    {
+      name: `Download Images `,
+      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+    },
+    
+  ];
   return (
     <div>
-    <div className="bg-[#1976D2] w-full h-screen">
+    <div className="bg-[#1976D2] w-full h-auto">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
@@ -27,38 +71,50 @@ const Info = () => {
         <div className="text-white text-5xl text-center mt-8">
           Our Services
         </div>
+        <div className='w-2/4 m-auto '>
+      <div className="p-20">
+      <Slider {...settings}>
+        {data.map((d) => (
+          <div key={d.name} className="bg-white h-[450px] text-black rounded-xl">
+            <div className='h-56   flex justify-center items-center rounded-t-xl'>
+            <img  src={d.img} alt="" className=""/>
+            </div>
+            <div className="flex flex-col  h-auto items-center justify-center gap-4 p-4">
+              <p className="text-xl font-semibold">{d.name}</p>
+              <p className="text-center">{d.review}</p>
+              <button className='bg-transparent border-2 border-[#1976D2] text-lg px-6 py-1 rounded-xl'>Try Now!</button>
+            </div>
+          </div>
+        ))}
+      </Slider>
+      </div>
+    </div>
+    <div className="w-full h-auto bg-black/90  flex flex-col absolute">
+      <div className="flex justify-between px-16 mt-4 py-4">
+       <div className="flex flex-col text-white">
+        <p className="text-2xl ">Need more information?</p>
+        <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
+       </div>
+       <button className="text-2xl text-white px-6 py-3 border-2 rounded-xl border-white bg-transparent">
+        Contact Us
+       </button>
+       </div>
+       <div className="flex justify-between px-16  py-4">
+       <div className="flex text-2xl text-white">
+        LOGO
+       </div>
+       <div className="flex justify-between  space-x-4">
+        <FaFacebook size={40} className="text-blue-800"/>
+        <FaInstagram size={40} className="text-red-600"/>
+        <FaTwitter size={40} className="text-blue-400"/>
+        <FaWhatsapp size={40} className="text-green-600"/>
+        <FaLinkedin size={40} className="text-blue-800"/>
+       </div>
+       </div>
+    </div>
 
      </div>
-     <div className="carousel w-full flex">
-  <div id="slide1" className="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1625726411847-8cbb60cc71e6.jpg" alt="/" className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide4" className="btn btn-circle">❮</a> 
-      <a href="#slide2" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide2" className="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.jpg" alt="/"  className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide1" className="btn btn-circle">❮</a> 
-      <a href="#slide3" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide3" className="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg" alt="/"  className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide2" className="btn btn-circle">❮</a> 
-      <a href="#slide4" className="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide4" className="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg" alt="/"  className="w-full" />
-    <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide3" className="btn btn-circle">❮</a> 
-      <a href="#slide1" className="btn btn-circle">❯</a>
-    </div>
-  </div>
-</div>
+
 </div>
   )
 }

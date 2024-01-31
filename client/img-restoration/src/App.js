@@ -5,6 +5,7 @@ import Signin from "./Signin";
 import Signup from "./Signup";
 import Info from "./Info";
 import Profile from "./Profile";
+import Collage from "./Collage";
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
       <Route path="/SignIn" element={<Signin/>} />
       <Route path="/Info" element={<Info/>} />
       <Route path="/Profile" element={<Profile/>} />
+      <Route path="/Collage" element={<Collage/>} />
     </Routes>
     </BrowserRouter>
     </div>
