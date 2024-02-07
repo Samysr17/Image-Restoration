@@ -1,11 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import pic_2 from "./assets/pic_2.jpg"
 const Signin = () => {
   return (
     <div>
         <div className="bg-[#1976D2] w-full h-screen flex justify-center ">
           <div className='w-[50%] flex  justify-center items-center '>
-             <div className="flex flex-col h-[60%] w-[60%] ">
+             <div className="flex flex-col md:h-[60%] md:w-[60%] ">
                <p className="text-white text-3xl ">Welcome Back !</p>
                <p className="text-white text-xl mt-4 ">Enter Your Credentials to access your account</p>
                <span className="text-white mt-8">E-mail</span>
@@ -25,11 +26,11 @@ const Signin = () => {
                   <span className='text-white'>
                     Don't have an account?
                   </span>{' '}
-                  <p className="text-white ml-2">SignUp</p>
+                  <button className="text-white ml-2 "><Link to="/SignUp">SignUp</Link></button>
                 </p>
              </div>
           </div>
-          <div className=" signin_bg w-[50%] rounded-xl  h-screen  mr-0 flex flex-col justify-center items-center">
+          <div className="hidden w-[50%] rounded-xl  h-screen  mr-0 md:flex flex-col justify-center items-center">
             <img className="h-screen w-full" src={pic_2} alt="/"/>
           </div>
         </div>
