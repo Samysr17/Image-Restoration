@@ -3,7 +3,7 @@ import { useCallback } from 'react';
 import {useDropzone} from 'react-dropzone'
 import { FaPlusCircle } from "react-icons/fa";
 import Select from 'react-select';
-// import { ReactPhotoCollage } from "react-photo-collage";
+import { ReactPhotoCollage } from "react-photo-collage";
 
 const Collage = () => {
     const options = [
@@ -21,15 +21,16 @@ const Collage = () => {
           })
        
         ))
-        console.log(acceptedFiles);
+        console.log(images);
+        console.log(images[0]);
       }, [])
       const {getRootProps, getInputProps} = useDropzone({onDrop});
       const setting = {
-        // width: '600px',
-        // height: ['250px', '170px'],
-        // layout: [1, 4],
-        photos: images,
-        // showNumOfRemainingPhotos: false
+        width: '600px',
+        height: ['250px', '170px'],
+        layout: [1, 1],
+        photos:images,
+        showNumOfRemainingPhotos: true
       };
   return (
     <div className="h-auto w-full bg-[#DFD5D5]">
@@ -50,7 +51,7 @@ const Collage = () => {
            <div {...getRootProps()}>
           <input {...getInputProps()} />
           {images?.map(file=>{
-          <img className="w-50%" src={file.preview} alt="/"/>
+          <img className="w-50% " src={file.preview} alt="/"/>
        })}
        <div className="flex flex-col items-center ">
         <FaPlusCircle size={20} className="mt-[5%]" /> 
@@ -59,8 +60,10 @@ const Collage = () => {
         <div className="grid grid-rows-2 gap-0 grid-flow-col">
        {images?.map(file=>(
           <img className="w-[50%]"  src={file.preview} alt="/"/>
+          
        ))}
        </div>
+       <ReactPhotoCollage  {...setting} />
         </div>
        
             
@@ -68,7 +71,6 @@ const Collage = () => {
            <div className="flex justify-center space-x-4 p-8">
              <button className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
-             {/* <ReactPhotoCollage {...setting} /> */}
            </div>
         </div>
         </div>
