@@ -30,9 +30,11 @@ const Collage = () => {
         ))
       }, [])
       const {getRootProps, getInputProps,isDragActive} = useDropzone({onDrop});
-      // const handleClick = () => {
-      //   navigate("/profile", { state: {images} });
-      // };
+      const handleClick = () => {
+        <div>
+        <ReactPhotoCollage  {...setting} />
+        </div>
+      };
 
   return (
     <div className="h-auto w-full bg-[#DFD5D5]">
@@ -73,10 +75,10 @@ const Collage = () => {
        ))}
        </div>
            <div className="flex justify-center space-x-4 p-8">
-             <button  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
+             <button onClick={handleClick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
-           <ReactPhotoCollage  {...setting} />
+           <div onChange={handleClick}></div>
         </div>
         </div>
         
