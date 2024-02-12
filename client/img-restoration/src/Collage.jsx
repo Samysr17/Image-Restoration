@@ -15,10 +15,11 @@ const Collage = () => {
       ]
       // const navigate = useNavigate();
       const [images,setimages]=useState([]);
+      const [collage,setcollage]=useState(false);
       const setting = {
         width: '400px',
         height: ['200px', '170px'],
-        layout: [1, 3],
+        layout: [1, 1],
         photos: images,
       };
       const onDrop = useCallback(acceptedFiles => {
@@ -31,9 +32,7 @@ const Collage = () => {
       }, [])
       const {getRootProps, getInputProps,isDragActive} = useDropzone({onDrop});
       const handleClick = () => {
-        <div>
-        <ReactPhotoCollage  {...setting} />
-        </div>
+        setcollage(!collage);
       };
 
   return (
@@ -62,7 +61,9 @@ const Collage = () => {
             <div>
           <FaPlusCircle size={20} className="mt-[5%]" /> 
           <p>Drag 'n' drop some files here, or click to select files</p>
+          {collage?<ReactPhotoCollage  {...setting} />:(<div></div>)}
           </div>
+          
           )
       }
         </div>
@@ -74,11 +75,21 @@ const Collage = () => {
           
        ))}
        </div>
+       <div className="flex flex-col" >
+        <div className="flex justify-between">
+           <span className="text-blue-700 ">Enter images on top</span>
+               <input type='number'  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               </div>
+               <div className="flex justify-between">
+               <span className="text-blue-700 ">Enter  images on bottom</span>
+               <input type='number'  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               </div>
+           </div>
            <div className="flex justify-center space-x-4 p-8">
              <button onClick={handleClick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
-           <div onChange={handleClick}></div>
+
         </div>
         </div>
         
