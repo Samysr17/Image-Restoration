@@ -16,10 +16,12 @@ const Collage = () => {
       // const navigate = useNavigate();
       const [images,setimages]=useState([]);
       const [collage,setcollage]=useState(false);
+      const [top,settop]=useState('');
+      const [bottom,setbottom]=useState('');
       const setting = {
         width: '400px',
         height: ['200px', '170px'],
-        layout: [1, 1],
+        layout: [top, bottom],
         photos: images,
       };
       const onDrop = useCallback(acceptedFiles => {
@@ -34,6 +36,9 @@ const Collage = () => {
       const handleClick = () => {
         setcollage(!collage);
       };
+      function discard(){
+        window.location.reload();
+      }
 
   return (
     <div className="h-auto w-full bg-[#DFD5D5]">
@@ -78,16 +83,16 @@ const Collage = () => {
        <div className="flex flex-col" >
         <div className="flex justify-between">
            <span className="text-blue-700 ">Enter images on top</span>
-               <input type='number'  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               <input onChange={(e)=>{settop(e.target.value)}} type='number'  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
                </div>
                <div className="flex justify-between">
                <span className="text-blue-700 ">Enter  images on bottom</span>
-               <input type='number'  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               <input type='number' onChange={(e)=>{setbottom(e.target.value)}}  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
                </div>
            </div>
            <div className="flex justify-center space-x-4 p-8">
              <button onClick={handleClick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
-             <button className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
+             <button onClick={discard} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
 
         </div>
