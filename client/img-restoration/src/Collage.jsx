@@ -47,7 +47,7 @@ const Collage = () => {
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select options={options} />
+           <Select className=" text-black" options={options} />
               <p>About</p>
               <p>UserName</p>
               <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
@@ -63,8 +63,8 @@ const Collage = () => {
        {
         isDragActive ?
           <p>Drop the files here ...</p> :(
-            <div>
-          <FaPlusCircle size={20} className="mt-[5%]" /> 
+            <div className="flex flex-col justify-center">
+          <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center " /> 
           <p>Drag 'n' drop some files here, or click to select files</p>
           {collage?<ReactPhotoCollage  {...setting} />:(<div></div>)}
           </div>
@@ -74,7 +74,7 @@ const Collage = () => {
         </div>
            </div>
            </div>
-        <div className="flex w-[70%] h-[100px] justify-center space-x-4">
+        <div className="flex w-[70%] p-4 justify-center space-x-4">
        {images?.map(file=>(
           <img className="w-[20%]"  src={file.source} alt="/"/>
           
@@ -82,12 +82,12 @@ const Collage = () => {
        </div>
        <div className="flex flex-col" >
         <div className="flex justify-between">
-           <span className="text-blue-700 ">Enter images on top</span>
-               <input onChange={(e)=>{settop(e.target.value)}} type='number'  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           <span className="text-blue-700 mt-4 ">Enter images on top</span>
+               <input onChange={(e)=>{settop(e.target.value)}} type='number'  className="bg-transparent mt-2  bg-white border-white border-2 rounded-xl px-2 py-2"></input>
                </div>
-               <div className="flex justify-between">
-               <span className="text-blue-700 ">Enter  images on bottom</span>
-               <input type='number' onChange={(e)=>{setbottom(e.target.value)}}  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               <div className="flex justify-center  space-x-4">
+               <span className="text-blue-700 mt-4 ">Enter  images on bottom</span>
+               <input type='number' onChange={(e)=>{setbottom(e.target.value)}}  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-2 py-2"></input>
                </div>
            </div>
            <div className="flex justify-center space-x-4 p-8">
