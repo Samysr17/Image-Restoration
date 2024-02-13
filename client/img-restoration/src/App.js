@@ -6,9 +6,11 @@ import Signup from "./Signup";
 import Info from "./Info";
 import Profile from "./Profile";
 import Collage from "./Collage";
+import { AuthContextProvider } from "./Context/AuthContext";
 function App() {
   return (
     <div className="App">
+      <AuthContextProvider>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={<Home/>} />
@@ -19,6 +21,7 @@ function App() {
       <Route path="/Collage" element={<Collage/>} />
     </Routes>
     </BrowserRouter>
+    </AuthContextProvider>
     </div>
   );
 }

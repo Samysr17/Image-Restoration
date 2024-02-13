@@ -1,7 +1,24 @@
 import React from 'react'
 import pic_2 from "./assets/pic_2.jpg"
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { UserAuth } from './Context/AuthContext'
 const Signup = () => {
+  const {createUser}=UserAuth();
+  const [email,setemail]=useState('');
+  const [password,setpassword]=useState('');
+  const [error,seterror]=useState('');
+  const navigate=useNavigate();
+  const handleClick=async(e)=>{
+     e.preventDefault();
+     try{
+      await createUser(email,password);
+      navigate("/info");
+     }catch(error){
+      seterror(error.message);
+     }
+  }
   return (
     <div className="">
     <div className=" bg-[#1976D2] w-full h-screen flex justify-center ">
@@ -9,11 +26,12 @@ const Signup = () => {
          <div className="flex flex-col md:h-[60%] md:w-[60%] ">
            <p className="text-white text-3xl ">Let`s Get Started</p>
            <span className="text-white mt-8">E-mail</span>
-           <input  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
            <span className="text-white mt-8">Password</span>
-           <input  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           <input onChange={(e)=>setpassword(e.target.value)}   className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
            <span className="text-white mt-8">Mobile Number</span>
            <input  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           {error ?<p className='text-red-700'>{error}</p>:null}
            <div className='flex justify-between items-center text-sm text-white mt-2'>
               <p>
                 <input className='mr-2' type='checkbox' />
@@ -21,7 +39,8 @@ const Signup = () => {
               </p>
               <p>Need Help?</p>
             </div>
-           <button className="py-3 mt-4 bg-white rounded-xl">Get OTP</button>
+            
+           <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">Get OTP</button>
 
             <p className='py-4 flex' >
               <span className='text-white'>
