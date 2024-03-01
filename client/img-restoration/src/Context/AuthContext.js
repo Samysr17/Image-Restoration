@@ -9,7 +9,7 @@ const AuthContext=createContext();
 export function AuthContextProvider({children}){
     const [user,setuser]=useState({});
     function createUser(email,password){
-        createUserWithEmailAndPassword(email,password);
+        createUserWithEmailAndPassword(auth,email,password);
         setDoc(doc(db,'users',email),{
             credits:100
         })

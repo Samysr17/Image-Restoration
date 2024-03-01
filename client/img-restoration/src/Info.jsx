@@ -8,8 +8,17 @@ import { FaFacebook } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { UserAuth } from './Context/AuthContext'
+import { useNavigate } from 'react-router-dom';
 
 const Info = () => {
+  const {user,logout}=UserAuth();
+  const  navigate=useNavigate();
+  const handleclick=async(e)=>{
+    e.preventDefault()
+    await logout();
+    navigate("/signup");
+  }
   const settings = {
     dots: true,
     infinite: true,
@@ -53,9 +62,9 @@ const Info = () => {
            <div className="ml-8">LOGO</div>
            <div className="hidden md:flex space-x-16 mr-8">
               <p>About</p>
-              <p>UserName</p>
+              <p>{user.email}</p>
               <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
-              <p>Account</p>
+              <p className="cursor-pointer" onClick={handleclick}>Log Out</p>
            </div>
            <div className="md:hidden mr-8">Hamburger</div>
         </div>
