@@ -1,6 +1,6 @@
 import { createContext,useContext,useState,useEffect } from "react";
 import {auth,db} from "../Firebase";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,RecaptchaVerifier,signInWithPhoneNumber} from "firebase/auth";
 import { setDoc,doc } from "firebase/firestore";
 
 const AuthContext=createContext();
@@ -29,9 +29,14 @@ export function AuthContextProvider({children}){
            user_state();
         }
     })
+    function recaptcha(phone){
+      const recap=new RecaptchaVerifier('recaptcha-container', {},auth);
+      recap.render();
+      return signInWithPhoneNumber(auth,phone,recap);
+    }
 
     return(
-        <AuthContext.Provider value={{createUser,logout,login,user}}>
+        <AuthContext.Provider value={{createUser,logout,login,user,recaptcha}}>
             {children}
         </AuthContext.Provider>
     )

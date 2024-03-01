@@ -4,9 +4,11 @@ import {useDropzone} from 'react-dropzone'
 import { FaPlusCircle } from "react-icons/fa";
 import Select from 'react-select';
 import { ReactPhotoCollage } from "react-photo-collage";
+import { UserAuth } from './Context/AuthContext'
 // import { useNavigate } from "react-router-dom";
 
 const Collage = () => {
+    const {user}=UserAuth();
     const options = [
         { value: 'Restoration', label: 'Restoration',color:'black' },
         { value: 'strawberry', label: 'Collage',color:'black'  },
@@ -48,8 +50,7 @@ const Collage = () => {
            <div className="flex space-x-16 mr-8">
            
            <Select className=" text-black" options={options} />
-              <p>About</p>
-              <p>UserName</p>
+              <p>{user.email}</p>
               <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
               <p>Account</p>
            </div>

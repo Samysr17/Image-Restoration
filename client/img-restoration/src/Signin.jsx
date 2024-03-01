@@ -31,6 +31,7 @@ const Signin = () => {
                <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
                <span  className="text-white mt-8">Password</span>
                <input onChange={(e)=>setpassword(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               {error ?<p className='text-red-700'>{error}</p>:null}
                <div className='flex justify-between items-center text-sm text-white mt-2'>
                   <p>
                     <input className='mr-2' type='checkbox' />

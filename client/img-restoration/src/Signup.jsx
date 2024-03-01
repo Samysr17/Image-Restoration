@@ -29,8 +29,6 @@ const Signup = () => {
            <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
            <span className="text-white mt-8">Password</span>
            <input onChange={(e)=>setpassword(e.target.value)}   className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
-           <span className="text-white mt-8">Mobile Number</span>
-           <input  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
            {error ?<p className='text-red-700'>{error}</p>:null}
            <div className='flex justify-between items-center text-sm text-white mt-2'>
               <p>
@@ -40,7 +38,7 @@ const Signup = () => {
               <p>Need Help?</p>
             </div>
             
-           <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">Get OTP</button>
+           <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">continue</button>
 
             <p className='py-4 flex' >
               <span className='text-white'>
