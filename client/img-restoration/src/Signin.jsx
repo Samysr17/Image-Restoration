@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import pic_2 from "./assets/pic_2.jpg"
+import pic_5 from "./assets/pic_5.jpg"
 import { useState } from 'react'
 import { UserAuth } from './Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
@@ -50,7 +50,7 @@ const Signin = () => {
              </div>
           </div>
           <div className="hidden w-[50%] rounded-xl  h-screen  mr-0 md:flex flex-col justify-center items-center">
-            <img className="h-screen w-full" src={pic_2} alt="/"/>
+            <img className="h-screen w-full" src={pic_5} alt="/"/>
           </div>
         </div>
     </div>

@@ -11,8 +11,8 @@ const Collage = () => {
     const {user}=UserAuth();
     const options = [
         { value: 'Restoration', label: 'Restoration',color:'black' },
-        { value: 'strawberry', label: 'Collage',color:'black'  },
-        { value: 'vanilla', label: 'Slider',color:'black'  },
+        { value: 'collage', label: 'Collage',color:'black'  },
+        { value: 'Info', label: 'Info',color:'black'  },
         { value: 'Watermark Remover', label: 'Watermark Remover',color:'black'  }
       ]
       // const navigate = useNavigate();

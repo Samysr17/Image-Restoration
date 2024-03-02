@@ -1,5 +1,5 @@
 import React from 'react'
-import pic_2 from "./assets/pic_2.jpg"
+import pic_4 from "./assets/pic_4.jpg"
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react'
@@ -49,7 +49,7 @@ const Signup = () => {
          </div>
       </div>
       <div className=" hidden  md:w-[50%] rounded-xl  md:h-screen  mr-0 md:flex md:flex-col justify-center items-center">
-        <img className="h-screen w-full" src={pic_2} alt="/"/>
+        <img className="h-screen w-full" src={pic_4} alt="/"/>
       </div>
     </div>
 </div>

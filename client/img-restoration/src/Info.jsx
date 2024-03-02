@@ -10,6 +10,7 @@ import { FaTwitter } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { UserAuth } from './Context/AuthContext'
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Info = () => {
   const {user,logout}=UserAuth();
@@ -71,7 +72,7 @@ const Info = () => {
         <div className="md:flex w-full ">
             <div className="bg-[#DFD5D5] flex flex-col  md:w-[70%] justify-center items-center">
               <p className="md:text-4xl text-xl font-semibold md:w-[50%] text-black">Image Restoration: A New Lens to the Past</p>
-              <button className="bg-black text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]">Try Now !</button>
+              <button className="bg-black text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"><Link to="/collage">Try Now !</Link></button>
             </div>
             <div className="">
                <img className="h-full  w-full" src={pic_3} alt="/"/>

@@ -50,12 +50,14 @@ const Phone = () => {
            <input onChange={(e)=>setphone(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
            <div className="mt-4" id="recaptcha-container"/>
            <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">Get OTP</button>
-           </div>:<div className="flex flex-col"><span className="text-white mt-8">Enter Otp</span>
+           </div>:<div className="flex flex-col">
+            {/* {setphone("")}; */}
+            <span className="text-white mt-8">Enter Otp</span>
            <input onChange={(e)=>setotp(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
-           <button onClick={verifyOtp} className="py-3 mt-4 bg-white rounded-xl">Get OTP</button>
+           <button onClick={verifyOtp} className="py-3 mt-4 bg-white rounded-xl">Verify</button>
            </div>
            }
-           {error ?<p className='text-red-700'>{error}</p>:null}
+           {error ?<p className='text-red-700'>{error}</p>:null}  
            <div className='flex justify-between items-center text-sm text-white mt-2'>
               <p>
                 <input className='mr-2' type='checkbox' />
