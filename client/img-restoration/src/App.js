@@ -7,6 +7,7 @@ import Info from "./Info";
 import Profile from "./Profile";
 import Collage from "./Collage";
 import Phone from "./Phone";
+import Restore from "./Restore";
 import { AuthContextProvider } from "./Context/AuthContext";
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/Profile" element={<Profile/>} />
       <Route path="/Collage" element={<Collage/>} />
       <Route path="/Phone" element={<Phone/>} />
+      <Route path="/Restore" element={<Restore/>} />
     </Routes>
     </BrowserRouter>
     </AuthContextProvider>
