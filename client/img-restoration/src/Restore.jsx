@@ -4,15 +4,6 @@ import exampleImage from './assets/exampleImage.jpg';
 import Replicate from 'replicate';
 
 const Restore = () => {
-    async function runModel() {
-const replicate = new Replicate();
-
-const input = {
-    img: "https://replicate.delivery/mgxm/59d9390c-b415-47e0-a907-f81b0d9920f1/187400315-87a90ac9-d231-45d6-b377-38702bd1838f.jpg"
-};
-
-const output = await replicate.run("tencentarc/gfpgan:0fbacf7afc6c144e5be9767cff80f25aff23e52b0708f17e20f9879b2f21516c", { input });
-console.log(output)
         // const model = await tf.loadGraphModel('/model.json');
     
         // // Get content image
