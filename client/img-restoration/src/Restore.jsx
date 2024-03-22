@@ -4,6 +4,7 @@ import exampleImage from './assets/exampleImage.jpg';
 import Replicate from 'replicate';
 
 const Restore = () => {
+  //need to finalise numbers
         // const model = await tf.loadGraphModel('/model.json');
     
         // // Get content image
