@@ -5,11 +5,13 @@ import Replicate from 'replicate';
 
 const Restore = () => {
   //need to finalise numbers
+  //work on auth and stripe and backend
+  //watermark model as well
         // const model = await tf.loadGraphModel('/model.json');
     
         // // Get content image
         // let image = new Image(256,256);
-        // image.src = exampleImage;
+        // image.src = exampleImage;s
     
         // // Convert image to tensor and add batch dimension
         // let tfTensor = tf.browser.fromPixels(image);    
