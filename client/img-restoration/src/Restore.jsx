@@ -1,12 +1,12 @@
 import React from 'react'
-import * as tf from '@tensorflow/tfjs';
-import exampleImage from './assets/esrgan3.png';
+// import * as tf from '@tensorflow/tfjs';
+import exampleImage from './assets/esrgan1.webp';
 import e2 from './assets/example_images_2.jpeg'
 import Upscaler from 'upscaler';
 
 // import Replicate from 'replicate';
 
-const Restore = () => {
+const Restore=()=>{
   
     const upscaler = new Upscaler();
     const func=()=>{
