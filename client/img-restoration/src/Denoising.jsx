@@ -11,8 +11,11 @@ const Denoising = () => {
         upscaler.upscale(exampleImage, { patchSize: 64, padding: 2, progress: console.log }).then((upscaledImgSrc) => {
             const img = document.createElement("img");
             img.src = upscaledImgSrc;
+            document.body.appendChild(img)
+             {<div><img alt=" " src={img}></img></div>}
+            console.log(upscaledImgSrc)
             // document.getElementById("target").appendChild(img);
-            {<div><img src={img}></img></div>}
+           
           });
         
       }
