@@ -5,22 +5,32 @@ import Upscaler from 'upscaler';
 import Select from 'react-select';
 import { UserAuth } from './Context/AuthContext'
 import { useState } from 'react';
-
-// import Replicate from 'replicate';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Restore=()=>{
   const {user}=UserAuth();
   const options = [
     { value: 'Restoration', label: 'Restoration',color:'black' },
-    { value: 'collage', label: 'Collage',color:'black'  },
-    { value: 'Info', label: 'Info',color:'black'  },
-    { value: 'Watermark Remover', label: 'Watermark Remover',color:'black'  }
+    { value: 'Collage', label: 'Collage',color:'black'  },
+    { value: 'Home', label: 'Home',color:'black'  },
+    { value: 'Denoising', label: 'Denoising',color:'black'  }
   ]
   
     const upscaler = new Upscaler();
     const [image,setimage]=useState("");
     const [model,setmodel]=useState(false);
     const func=()=>{
+      // toast(Wow so easy!', {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      //   });
       upscaler.upscale(exampleImage).then(upscaledImage => {
         const img = document.createElement("img")
         img.src = upscaledImage
@@ -28,6 +38,7 @@ const Restore=()=>{
         setimage(img.src);
         setmodel(!model);
         console.log(upscaledImage);
+        
       });
     }
     function discard(){
@@ -80,7 +91,19 @@ const Restore=()=>{
           
        </div>
            <div className="flex justify-center space-x-4 p-8">
-             <button onClick={func}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
+             <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
+  <button onClick={func}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
+<ToastContainer />
              <button onClick={discard} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
 
