@@ -5,8 +5,8 @@ import Upscaler from 'upscaler';
 import Select from 'react-select';
 import { UserAuth } from './Context/AuthContext'
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Restore=()=>{
   const {user}=UserAuth();
@@ -91,7 +91,7 @@ const Restore=()=>{
           
        </div>
            <div className="flex justify-center space-x-4 p-8">
-             <ToastContainer
+             {/* <ToastContainer
                 position="top-right"
                 autoClose={5000}
                 hideProgressBar={false}
@@ -102,8 +102,8 @@ const Restore=()=>{
                 draggable
                 pauseOnHover
                 theme="light"/>
-  <button onClick={func}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
-<ToastContainer />
+<ToastContainer /> */}
+<button onClick={func}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button onClick={discard} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
 
