@@ -45,6 +45,9 @@ const Profile = () => {
         })
       })
   }
+  const handledis=()=>{
+    window.location.reload();
+  }
   return (
    <>
    <div {...getRootProps()}>
@@ -59,6 +62,7 @@ const Profile = () => {
           
        ))}
        <button onClick={handleclick} className="p-2 border-black border-solid">Restore</button>
+       <button onClick={handledis} className="p-2 border-black border-solid">Discard</button>
        {model?<img src={image} alt=""></img>:<div></div>}
     </div>
    </>
