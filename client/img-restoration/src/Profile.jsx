@@ -10,15 +10,7 @@ const Profile = () => {
   const [model,setmodel]=useState(false);
   const [error,seterror]=useState("");
   const upscaler=new Upscaler();
-  // upscaler.upscale(exampleImage).then(upscaledImage => {
-  //   const img = document.createElement("img")
-  //   img.src = upscaledImage
-  //   // document.body.appendChild(img)
-  //   setimage(img.src);
-  //   setmodel(!model);
-  //   console.log(upscaledImage);
-    
-  // });
+
   const onDrop = useCallback(acceptedFiles => {
     setimages(acceptedFiles.map(file=>
       Object.assign(file,{
