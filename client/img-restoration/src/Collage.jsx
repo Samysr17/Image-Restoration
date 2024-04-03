@@ -60,7 +60,7 @@ const Collage = () => {
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
            <div {...getRootProps()}>
           <input {...getInputProps()} />
-       <div className="flex flex-col items-center ">
+       <div className="flex flex-col items-center">
        {
         isDragActive ?
           <p>Drop the files here ...</p> :(

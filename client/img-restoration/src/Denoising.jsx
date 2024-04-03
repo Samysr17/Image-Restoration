@@ -2,9 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import Upscaler from "upscaler";
 import model from '@upscalerjs/maxim-denoising';
-import exampleImage from './assets/esrgan1.webp';
 import Select from 'react-select';
 import { UserAuth } from './Context/AuthContext'
+import {useDropzone} from 'react-dropzone';
+import { useCallback } from 'react';
 
 const Denoising = () => {
   const {user}=UserAuth();
@@ -19,23 +20,42 @@ const Denoising = () => {
       });
       const [image,setimage]=useState("");
       const [model_1,setmodel_1]=useState(false);
-      function discard(){
-        window.location.reload();
-      }
-      const denoise=()=>{
-        upscaler.upscale(exampleImage, { patchSize: 64, padding: 2, progress: console.log }).then((upscaledImgSrc) => {
-            const img = document.createElement("img");
-            img.src = upscaledImgSrc;
+      const [images,setimages]=useState([]);
+      const[error,seterror]=useState(false);
+  
+      const onDrop = useCallback(acceptedFiles => {
+        setimages(acceptedFiles.map(file=>
+          Object.assign(file,{
+            source:URL.createObjectURL(file)
+          })
+         
+        ));
+      }, [])
+      const {getRootProps, getInputProps} = useDropzone({onDrop});
+      const handleclick=()=>{
+        if(images.length>1){
+          seterror(error)
+          window.alert("Please Discard and select only 1 image");
+          return ;
+        }
+        if(images.length===0){
+          window.alert("Please select an Image");
+          return ;
+        }
+        images.map(file=>{
+          upscaler.upscale(file.source, { patchSize: 64, padding: 2, progress: console.log }).then((upscaledImage)=>{
+            const img = document.createElement("img")
+            img.src = upscaledImage
             // document.body.appendChild(img)
             setimage(img.src);
             setmodel_1(!model_1);
-            //  {<div><img alt=" " src={img}></img></div>}
-            console.log(upscaledImgSrc)
-            // document.getElementById("target").appendChild(img);
-           
-          });
-        
-      }
+            console.log(upscaledImage);
+          })
+        })
+    }
+    const handledis=()=>{
+      window.location.reload();
+    }
   return (
     <div className="h-auto w-full bg-[#DFD5D5]">
     <div className="bg-[#1976D2] w-full h-auto">
@@ -52,41 +72,51 @@ const Denoising = () => {
         </div>
         <div className="flex flex-col justify-center items-center">
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
-           {/* <div {...getRootProps()}>
+           <div {...getRootProps()}>
           <input {...getInputProps()} />
-       <div className="flex flex-col items-center ">
-       {
-        isDragActive ?
+                {
+        model ?
           <p>Drop the files here ...</p> :(
             <div className="flex flex-col justify-center">
-          <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center " /> 
           <p>Drag 'n' drop some files here, or click to select files</p>
-          {collage?<ReactPhotoCollage  {...setting} />:(<div></div>)}
           </div>
-          
           )
-      }
+         }
+       <div className="flex flex-col items-center ">
         </div>
-           </div> */}
+           </div>
            <div className="flex space-x-4 justify-between">
             <div className="flex-col">
-            <span className="ml-[30%]">Your Image</span>
-           <img className="h-[200px]" src={exampleImage} alt=""></img>
+            {model_1?(<span className="ml-[20%]">Your Image</span>):<div></div>}
+            {images?.map(file=>(
+          <img className="h-[200px]"  src={file.source} alt="/"/>
+       ))}
            </div>
            {model_1?(<div className="flex-col">
            <span className="ml-[20%]">Denoised Image</span>
            <img className="h-[200px]"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           </div>
-        <div className="flex w-[70%] p-4 justify-center space-x-4">
-          
-       </div>
-           <div className="flex justify-center space-x-4 p-8">
-             <button onClick={denoise}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
-             <button onClick={discard} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
+           {model_1?(<button className="mt-8">save</button>):<div></div>}
            </div>
 
+           <div className="flex justify-center space-x-4 p-8">
+             {/* <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"/>
+                 <ToastContainer /> */}
+
+            <button onClick={handleclick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
+             <button onClick={handledis} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
+           </div>
         </div>
         </div>
   )

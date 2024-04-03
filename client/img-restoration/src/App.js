@@ -20,11 +20,11 @@ function App() {
       <Route path="/SignUp" element={<Signup/>} />
       <Route path="/SignIn" element={<Signin/>} />
       <Route path="/Info" element={<Info/>} />
-      <Route path="/Profile" element={<Profile/>} />
+      <Route path="/Profile" element={<Profile/>}/>
       <Route path="/Collage" element={<Collage/>} />
       <Route path="/Phone" element={<Phone/>} />
       <Route path="/Restore" element={<Restore/>} />
-      <Route path="/Denoising" element={<Denoising/>} />
+      <Route path="/Denoising" element={<Denoising/>}/>
     </Routes>
     </BrowserRouter>
     </AuthContextProvider>
