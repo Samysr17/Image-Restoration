@@ -34,8 +34,6 @@ const Restore=()=>{
     }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop});
 
-    
-
     const handleclick=()=>{
         if(images.length>1){
           seterror(error)
