@@ -24,7 +24,8 @@ const Restore=()=>{
     const [model,setmodel]=useState(false);
     const [images,setimages]=useState([]);
     const[error,seterror]=useState(false);
-
+    var t0=0;
+    var t1=0;
     const onDrop = useCallback(acceptedFiles => {
       setimages(acceptedFiles.map(file=>
         Object.assign(file,{
@@ -34,6 +35,9 @@ const Restore=()=>{
       ));
     }, [])
     const {getRootProps, getInputProps} = useDropzone({onDrop});
+
+    
+
     const handleclick=()=>{
         if(images.length>1){
           seterror(error)
@@ -44,6 +48,7 @@ const Restore=()=>{
           window.alert("Please select an Image");
           return ;
         }
+         t0 = window.performance.now();
         images.map(file=>{
           upscaler.upscale(file.source).then(upscaledImage => {
             const img = document.createElement("img")
@@ -54,7 +59,10 @@ const Restore=()=>{
             console.log(upscaledImage);
           })
         })
+        t1 = window.performance.now();
+        console.log((t1 - t0))
     }
+   
     const handledis=()=>{
       window.location.reload();
     }
@@ -99,9 +107,9 @@ const Restore=()=>{
            <img className="h-[200px]"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           {model?(<button className="mt-8">save</button>):<div></div>}
+           {model?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/10000}</div><span>s</span></div><button className="mt-8">save</button></div>):<div></div>}
            </div>
-
+          
            <div className="flex justify-center space-x-4 p-8">
              {/* <ToastContainer
                 position="top-right"
@@ -116,7 +124,7 @@ const Restore=()=>{
                 theme="light"/>
 <ToastContainer /> */}
 
-<button onClick={handleclick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
+             <button onClick={handleclick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button onClick={handledis} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
 
