@@ -24,8 +24,6 @@ const Restore=()=>{
     const [model,setmodel]=useState(false);
     const [images,setimages]=useState([]);
     const[error,seterror]=useState(false);
-    var t0=0;
-    var t1=0;
     const onDrop = useCallback(acceptedFiles => {
       setimages(acceptedFiles.map(file=>
         Object.assign(file,{
@@ -48,7 +46,6 @@ const Restore=()=>{
           window.alert("Please select an Image");
           return ;
         }
-         t0 = window.performance.now();
         images.map(file=>{
           upscaler.upscale(file.source).then(upscaledImage => {
             const img = document.createElement("img")
@@ -59,8 +56,6 @@ const Restore=()=>{
             console.log(upscaledImage);
           })
         })
-        t1 = window.performance.now();
-        console.log((t1 - t0))
     }
    
     const handledis=()=>{
@@ -123,7 +118,7 @@ const Restore=()=>{
                 pauseOnHover
                 theme="light"/>
 <ToastContainer /> */}
-
+ 
              <button onClick={handleclick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
              <button onClick={handledis} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
            </div>
