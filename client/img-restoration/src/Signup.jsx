@@ -36,10 +36,8 @@ const Signup = () => {
                 Remember me
               </p>
               <p>Need Help?</p>
-            </div>
-            
+            </div> 
            <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">continue</button>
-
             <p className='py-4 flex' >
               <span className='text-white'>
                 Already have an account?

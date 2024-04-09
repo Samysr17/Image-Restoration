@@ -4,8 +4,8 @@ import Upscaler from 'upscaler';
 import Select from 'react-select';
 import { UserAuth } from './Context/AuthContext'
 import { db } from './Firebase';
-import { arrayUnion,doc,updateDoc} from 'firebase/firestore';
-import { useState } from 'react';
+import { arrayUnion,doc,updateDoc,onSnapshot} from 'firebase/firestore';
+import { useState ,useEffect} from 'react';
 import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom'
@@ -16,13 +16,18 @@ import { Link } from 'react-router-dom'
 const Restore=()=>{
   const {user}=UserAuth();
   const [saved,setsaved]=useState(false);
+  const [dec,setdec]=useState(0);
   const options = [
     { value: 'Restoration', label: 'Restoration',color:'black' },
     { value: 'Collage', label: 'Collage',color:'black'  },
     { value: 'Home', label: 'Home',color:'black'  },
     { value: 'Denoising', label: 'Denoising',color:'black'  }
   ]
-  
+  useEffect(()=>{
+    onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
+     setdec(doc.data()?.credits);
+    })
+   },[user?.email])
     const upscaler = new Upscaler();
     const [image,setimage]=useState("");
     const [model,setmodel]=useState(false);
@@ -70,7 +75,8 @@ const Restore=()=>{
       await updateDoc(uid,{
         saved_r_images:arrayUnion({
           img:image
-        })
+        }),
+        credits:dec-20
       })
      }
     }
@@ -83,13 +89,15 @@ const Restore=()=>{
            
            <Select className=" text-black" options={options}/>
               <p><Link to="/Profile">{user.email}</Link></p>
-              <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
+              <button className="bg-white rounded-md  w-24 text-black">{dec} credits</button>
               <p>Account</p>
            </div>
         </div>
         </div>
         <div className="flex flex-col justify-center items-center">
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
+            <span>If Image more than 5 kb please Compress</span>
+           <a href="https://imagecompressor.com/"><button>Compress</button></a>
            <div {...getRootProps()}>
           <input {...getInputProps()} />
                 {

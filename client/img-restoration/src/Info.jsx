@@ -1,4 +1,6 @@
 import React from 'react'
+import pic_1 from './assets/pic_1.jpg'
+import pic_2 from './assets/pic_2.jpg'
 import pic_3 from './assets/pic_3.jpg'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
@@ -11,10 +13,23 @@ import { FaLinkedin } from "react-icons/fa";
 import { UserAuth } from './Context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { ImgComparisonSlider } from 'img-comparison-slider';
 
 const Info = () => {
   const {user,logout}=UserAuth();
   const  navigate=useNavigate();
+//   var divisor = document.getElementById("divisor"),
+//     handle = document.getElementById("handle"),
+//     slider_Q = document.getElementById("slider_1");
+
+// function moveDivisor() {
+//   handle.style.left = slider_Q.value+"%";
+// 	divisor.style.width = slider_Q.value+"%";
+// }
+
+// window.location.onload = function() {
+// 	moveDivisor();
+// };
   const handleclick=async(e)=>{
     e.preventDefault()
     await logout();
@@ -56,7 +71,8 @@ const Info = () => {
     },
     
   ];
-  return (
+
+  return (<div>
     <div className="bg-[#1976D2] w-full  h-auto">
     <div className="">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
@@ -77,6 +93,7 @@ const Info = () => {
             <div className="">
                <img className="h-full  w-full" src={pic_3} alt="/"/>
             </div>
+           
 
         </div>
         <div className="text-white text-5xl text-center mt-8">
@@ -134,9 +151,33 @@ const Info = () => {
         <FaLinkedin size={40} className="text-blue-800"/>
        </div>
     </div>
-
+    
      </div>
+    
+</div>
+ {/* <div class="container">
+  <div id="comparison">
+    <figure>
+      <div id="handle"></div>
+      <div id="divisor"></div>
+    </figure>
+    <input type="range" min="0" max="100" value="50" id="slider_1" />
+    </div>
+    </div> */}
+    <script
+  defer
+  src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
+></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
+/>
 
+<img-comparison-slider>
+  <img slot="first" src={pic_1}/>
+  <img slot="second" src={pic_2} />
+</img-comparison-slider>
+  
 </div>
   )
 }

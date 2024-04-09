@@ -12,7 +12,9 @@ export function AuthContextProvider({children}){
         createUserWithEmailAndPassword(auth,email,password);
         setDoc(doc(db,'users',email),{
             saved_r_images:[],
-            saved_d_images:[]
+            saved_d_images:[],
+            credits:100
+            
         })
         return;
     }

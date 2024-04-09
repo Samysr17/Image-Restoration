@@ -9,6 +9,7 @@ import Collage from "./Collage";
 import Phone from "./Phone";
 import Restore from "./Restore";
 import Denoising from "./Denoising";
+import Impaint from "./Impaint";
 import { AuthContextProvider } from "./Context/AuthContext";
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/Phone" element={<Phone/>} />
       <Route path="/Restore" element={<Restore/>} />
       <Route path="/Denoising" element={<Denoising/>}/>
+      <Route path="/Impaint" element={<Impaint/>}></Route>
     </Routes>
     </BrowserRouter>
     </AuthContextProvider>

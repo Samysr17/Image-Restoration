@@ -1,10 +1,11 @@
 import React from 'react'
 import { UserAuth } from './Context/AuthContext';
 import { useState,useEffect } from 'react';
-import { onSnapshot,doc,updateDoc } from 'firebase/firestore';
+import { onSnapshot,doc,updateDoc} from 'firebase/firestore';
 import { db } from './Firebase';
 import Select from 'react-select';
 import axios from 'react'
+import { ReactPhotoCollage } from "react-photo-collage";
 const Profile = () => {
   const {user}=UserAuth();
   const options = [
@@ -13,19 +14,42 @@ const Profile = () => {
     { value: 'Home', label: 'Home',color:'black'  },
     { value: 'Denoising', label: 'Denoising',color:'black'  }
   ]
+  // const [collage,setcollage]=useState(false);
+  // const [collage_1,setcollage_1]=useState(false);
+  const [dec,setdec]=useState(0);
   const [r_imgs,setr_imgs]=useState([]);
   const [d_imgs,setd_imgs]=useState([]);
   useEffect(()=>{
    onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
     setr_imgs(doc.data()?.saved_r_images);
     setd_imgs(doc.data()?.saved_d_images);
+    setdec(doc.data()?.credits);
    })
   },[user?.email])
+  // const setting = {
+  //   width: '400px',
+  //   height: ['200px', '170px'],
+  //   layout: [2, 2],
+  //   photos: r_imgs,
+  // };
+  // const setting_1 = {
+  //   width: '400px',
+  //   height: ['200px', '170px'],
+  //   layout: [2, 2],
+  //   photos: d_imgs,
+  // };
+  // const handleclick=()=>{
+  //   setcollage(!collage);
+  // }
+  // const handleclick_1=()=>{
+  //   setcollage_1(!collage_1);
+  // }
   const toDataURL = async (url) => {
     const response = await axios.get(url, { responseType: "blob" });
     const imageDataUrl = URL.createObjectURL(response.data);
     return imageDataUrl;
   };
+
 
   const download = async (imgurl) => {
     const a = document.createElement("a");
@@ -45,7 +69,7 @@ const Profile = () => {
            
            <Select className=" text-black" options={options}/>
               <p>{user.email}</p>
-              <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
+              <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
               <p>Account</p>
            </div>
         </div>
@@ -72,6 +96,12 @@ const Profile = () => {
        </div>
         </div>
         </div>
+        {/* <div>
+          <button onClick={handleclick}>Get Restored Collage</button>
+          {collage?<ReactPhotoCollage  {...setting} />:(<div></div>)}
+          <button onClick={handleclick_1}>Get Denoised Collage</button>
+          {collage?<ReactPhotoCollage  {...setting_1} />:(<div></div>)}
+        </div> */}
    </div>
    </>
   )
