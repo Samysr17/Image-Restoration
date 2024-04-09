@@ -4,7 +4,7 @@ import { useState,useEffect } from 'react';
 import { onSnapshot,doc,updateDoc } from 'firebase/firestore';
 import { db } from './Firebase';
 import Select from 'react-select';
-
+import axios from 'react'
 const Profile = () => {
   const {user}=UserAuth();
   const options = [
@@ -21,6 +21,20 @@ const Profile = () => {
     setd_imgs(doc.data()?.saved_d_images);
    })
   },[user?.email])
+  const toDataURL = async (url) => {
+    const response = await axios.get(url, { responseType: "blob" });
+    const imageDataUrl = URL.createObjectURL(response.data);
+    return imageDataUrl;
+  };
+
+  const download = async (imgurl) => {
+    const a = document.createElement("a");
+    a.href = await toDataURL(URL.createObjectURL(imgurl));
+    a.download = "myImage.png";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
   return (
    <>
      <div className="h-auto w-full bg-[#DFD5D5]">
@@ -41,7 +55,10 @@ const Profile = () => {
           <p>Restored Images</p>
         <div className='flex'>
         {r_imgs?.map(file=>( 
-          <img className="h-[100px]"  src={file.img} alt=""/>
+          <div className="flex-col">
+          <img   className="h-[100px]"  src={file.img} alt=""/>
+          {/* <button onClick={download(file.img)} >Download</button> */}
+          </div>
        ))}
         </div>
         </div>

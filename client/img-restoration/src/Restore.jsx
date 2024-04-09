@@ -112,7 +112,7 @@ const Restore=()=>{
            </div>
            {model?(<div className="flex-col">
            <span className="ml-[20%]">Upscaled Image</span>
-           <img className="h-[200px]"  src={image} alt=""></img>
+           <img download={image} className="h-[200px]"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
            {model?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/10000}</div><span>s</span></div><button onClick={save} className="mt-8">save</button></div>):<div></div>}
