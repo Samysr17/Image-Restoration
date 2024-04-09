@@ -6,9 +6,12 @@ import Select from 'react-select';
 import { UserAuth } from './Context/AuthContext'
 import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
+import { db } from './Firebase';
+import { arrayUnion,doc,updateDoc} from 'firebase/firestore';
 
 const Denoising = () => {
   const {user}=UserAuth();
+  const [saved,setsaved]=useState(false);
   const options = [
     { value: 'Restoration', label: 'Restoration',color:'black' },
     { value: 'collage', label: 'Collage',color:'black'  },
@@ -56,6 +59,17 @@ const Denoising = () => {
     const handledis=()=>{
       window.location.reload();
     }
+    const uid=doc(db,'users',`${user?.email}`);
+    const save=async()=>{
+     if(user?.email){
+      setsaved(true);
+      await updateDoc(uid,{
+        saved_d_images:arrayUnion({
+          img:image
+        })
+      })
+     }
+    }
   return (
     <div className="h-auto w-full bg-[#DFD5D5]">
     <div className="bg-[#1976D2] w-full h-auto">
@@ -97,7 +111,7 @@ const Denoising = () => {
            <img className="h-[200px]"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           {model_1?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/1000}</div><span>s</span></div><button className="mt-8">save</button></div>):<div></div>}
+           {model_1?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/1000}</div><span>s</span></div><button onClick={save} className="mt-8">save</button></div>):<div></div>}
            </div>
 
            <div className="flex justify-center space-x-4 p-8">
