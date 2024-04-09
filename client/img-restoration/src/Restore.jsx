@@ -8,6 +8,7 @@ import { arrayUnion,doc,updateDoc} from 'firebase/firestore';
 import { useState } from 'react';
 import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
+import { Link } from 'react-router-dom'
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -80,8 +81,8 @@ const Restore=()=>{
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select className=" text-black" options={options} />
-              <p>{user.email}</p>
+           <Select className=" text-black" options={options}/>
+              <p><Link to="/Profile">{user.email}</Link></p>
               <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
               <p>Account</p>
            </div>
