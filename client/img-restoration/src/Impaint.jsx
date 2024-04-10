@@ -32,9 +32,10 @@ const Impaint = () => {
         ));
       }, [])
       const {getRootProps, getInputProps} = useDropzone({onDrop});
-      const handleclick_1=()=>{
-        const model_1= tf.loadLayersModel('/public/model.json');
-        model_1.predict(ex)
+      const handleclick_1=async()=>{
+        const model_1= await tf.loadLayersModel('model.json');
+        console.log(ex.shape);
+        // model_1.predict(ex)
       }
       const handleclick=()=>{
           if(images.length>1){

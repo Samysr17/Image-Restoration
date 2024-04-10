@@ -91,7 +91,10 @@ const Info = () => {
               <button className="bg-black text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"><Link to="/collage">Try Now !</Link></button>
             </div>
             <div className="">
-               <img className="h-full  w-full" src={pic_3} alt="/"/>
+            <img-comparison-slider>
+  <img slot="first" src={pic_1}/>
+  <img slot="second" src={pic_2} />
+</img-comparison-slider>
             </div>
            
 
@@ -173,10 +176,6 @@ const Info = () => {
   href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
 />
 
-<img-comparison-slider>
-  <img slot="first" src={pic_1}/>
-  <img slot="second" src={pic_2} />
-</img-comparison-slider>
   
 </div>
   )
