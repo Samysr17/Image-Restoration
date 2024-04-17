@@ -22,15 +22,15 @@ const Signin = () => {
   }
   return (
     <div>
-        <div className="bg-[#1976D2] w-full h-screen flex justify-center ">
+        <div className="bg-black w-full h-screen flex justify-center ">
           <div className='w-[50%] flex  justify-center items-center '>
              <div className="flex flex-col md:h-[60%] md:w-[60%] ">
                <p className="text-white text-3xl ">Welcome Back !</p>
                <p className="text-white text-xl mt-4 ">Enter Your Credentials to access your account</p>
                <span  className="text-white mt-8">E-mail</span>
-               <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 text-white bg-black border-white border-2 rounded-xl px-6 py-2"></input>
                <span  className="text-white mt-8">Password</span>
-               <input onChange={(e)=>setpassword(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+               <input onChange={(e)=>setpassword(e.target.value)}  className="bg-transparent text-white mt-2 bg-black border-white border-2 rounded-xl px-6 py-2"></input>
                {error ?<p className='text-red-700'>{error}</p>:null}
                <div className='flex justify-between items-center text-sm text-white mt-2'>
                   <p>
@@ -39,7 +39,7 @@ const Signin = () => {
                   </p>
                   <p>Need Help?</p>
                 </div>
-               <button onClick={handleclick} className="py-3 mt-4 bg-white rounded-xl">Log In</button>
+               <button onClick={handleclick} className="py-3 mt-4 bg-black border-2 text-white border-white rounded-xl">Log In</button>
 
                 <p className='py-4 flex' >
                   <span className='text-white'>

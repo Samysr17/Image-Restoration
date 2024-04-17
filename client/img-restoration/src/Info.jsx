@@ -39,7 +39,7 @@ const Info = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2,
+    slidesToShow: 1,
     slidesToScroll: 1,
     responsive:[]
   };
@@ -47,11 +47,11 @@ const Info = () => {
     {
       name: `Image Restoration`,
       img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua KKR BEST TEAM IN DA WORLD.STUPID STEVE KERR `
     },
     {
-      name: `Watermark Remover`,
-      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
+      name: `Image Denoising`,
+      img:pic_1,
       review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
     },
     {
@@ -73,9 +73,9 @@ const Info = () => {
   ];
 
   return (<div>
-    <div className="bg-[#1976D2] w-full  h-auto">
+    <div className="colored w-full  h-auto">
     <div className="">
-        <div className="flex justify-between h-[80px] p-6 w-full  text-white">
+        <div className=" flex justify-between h-[80px] p-6 w-full  text-white">
            <div className="ml-8">LOGO</div>
            <div className="hidden md:flex space-x-16 mr-8">
               <p>About</p>
@@ -85,16 +85,16 @@ const Info = () => {
            </div>
            <div className="md:hidden mr-8">Hamburger</div>
         </div>
-        <div className="md:flex w-full ">
-            <div className="bg-[#DFD5D5] flex flex-col  md:w-[70%] justify-center items-center">
-              <p className="md:text-4xl text-xl font-semibold md:w-[50%] text-black">Image Restoration: A New Lens to the Past</p>
-              <button className="bg-black text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"><Link to="/collage">Try Now !</Link></button>
+        <div className="md:flex w-full h-screen  ">
+            <div className=" flex flex-col  md:w-[70%] justify-center items-center">
+              <p className="md:text-4xl text-xl font-semibold md:w-[50%] text-white">Image Restoration: A New Lens to the Past</p>
+              <button className="bg-transparent border-2 border-white text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"><Link to="/collage">Try Now !</Link></button>
             </div>
             <div className="">
             <img-comparison-slider>
-  <img slot="first" src={pic_1}/>
-  <img slot="second" src={pic_2} />
-</img-comparison-slider>
+  <img className="h-screen w-full" slot="first" src={pic_1}/>
+  <img className="h-screen w-full" slot="second" src={pic_2} />
+        </img-comparison-slider>
             </div>
            
 
@@ -103,24 +103,24 @@ const Info = () => {
           Our Services
         </div>
         <div className='w-2/4 m-auto '>
-      <div className="p-20">
+      <div className="p-24">
       <Slider {...settings}>
         {data.map((d) => (
           <div key={d.name} className="bg-white h-[450px] text-black rounded-xl">
-            <div className='h-56   flex justify-center items-center rounded-t-xl'>
-            <img  src={d.img} alt="" className=""/>
+            <div className=' flex justify-center items-center rounded-t-xl'>
+            <img  src={d.img} alt="" className="h-[224px] w-full"/>
             </div>
-            <div className="flex flex-col  h-auto items-center justify-center gap-4 p-4">
-              <p className="text-xl font-semibold">{d.name}</p>
-              <p className="text-center">{d.review}</p>
-              <button className='bg-transparent border-2 border-[#1976D2] text-lg px-6 py-1 rounded-xl'>Try Now!</button>
+            <div className=" bg-gradient-to-l from-[#797676] to-[#040708] flex flex-col  h-auto items-center justify-center gap-4 p-4">
+              <p className="text-xl text-white font-semibold">{d.name}</p>
+              <p className="text-center text-white">{d.review}</p>
+              <button className='bg-transparent mt-6  border-2 border-white text-white text-lg px-6 py-1 rounded-xl'>Try Now!</button>
             </div>
           </div>
         ))}
       </Slider>
       </div>
     </div>
-    <div className="w-full h-auto bg-black/90  flex flex-col absolute">
+    <div className="w-full h-auto  flex flex-col absolute">
       <div className="flex justify-between px-16 mt-4 py-4">
        <div className="flex flex-col text-white">
         <p className="md:text-2xl text-xl ">Need more information?</p>
@@ -167,14 +167,14 @@ const Info = () => {
     <input type="range" min="0" max="100" value="50" id="slider_1" />
     </div>
     </div> */}
-    <script
+    {/* <script
   defer
   src="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/index.js"
 ></script>
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/img-comparison-slider@8/dist/styles.css"
-/>
+/> */}
 
   
 </div>

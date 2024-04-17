@@ -11,9 +11,9 @@ const Collage = () => {
     const {user}=UserAuth();
     const options = [
         { value: 'Restoration', label: 'Restoration',color:'black' },
-        { value: 'collage', label: 'Collage',color:'black'  },
-        { value: 'Info', label: 'Info',color:'black'  },
-        { value: 'Watermark Remover', label: 'Watermark Remover',color:'black'  }
+        { value: 'Denoising', label: 'Denoising',color:'black'  },
+        { value: 'Home', label: 'Home',color:'black'  },
+        { value: 'Account', label: 'Account',color:'black'  }
       ]
       // const navigate = useNavigate();
       const [images,setimages]=useState([]);
@@ -43,8 +43,8 @@ const Collage = () => {
       }
 
   return (
-    <div className="h-auto w-full bg-[#DFD5D5]">
-    <div className="bg-[#1976D2] w-full h-auto">
+    <div className="h-auto w-full colored">
+    <div className=" w-full h-auto">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
@@ -63,10 +63,10 @@ const Collage = () => {
        <div className="flex flex-col items-center">
        {
         isDragActive ?
-          <p>Drop the files here ...</p> :(
+          <p className="text-white">Drop the files here ...</p> :(
             <div className="flex flex-col justify-center">
-          <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center " /> 
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center text-white " /> 
+          <p className="text-white">Drag 'n' drop some files here, or click to select files</p>
           {collage?<ReactPhotoCollage  {...setting} />:(<div></div>)}
           </div>
           
@@ -83,17 +83,17 @@ const Collage = () => {
        </div>
        <div className="flex flex-col" >
         <div className="flex justify-between">
-           <span className="text-blue-700 mt-4 ">Enter images on top</span>
+           <span className="text-white mt-4 ">Enter images on top</span>
                <input onChange={(e)=>{settop(e.target.value)}} type='number'  className="bg-transparent mt-2  bg-white border-white border-2 rounded-xl px-2 py-2"></input>
                </div>
                <div className="flex justify-center  space-x-4">
-               <span className="text-blue-700 mt-4 ">Enter  images on bottom</span>
+               <span className="text-white mt-4 ">Enter  images on bottom</span>
                <input type='number' onChange={(e)=>{setbottom(e.target.value)}}  className="bg-transparent  mt-2 bg-white border-white border-2 rounded-xl px-2 py-2"></input>
                </div>
            </div>
            <div className="flex justify-center space-x-4 p-8">
-             <button onClick={handleClick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
-             <button onClick={discard} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
+             <button onClick={handleClick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
+             <button onClick={discard} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
 
         </div>

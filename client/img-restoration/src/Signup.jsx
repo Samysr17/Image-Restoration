@@ -21,14 +21,14 @@ const Signup = () => {
   }
   return (
     <div className="">
-    <div className=" bg-[#1976D2] w-full h-screen flex justify-center ">
+    <div className=" bg-black w-full h-screen flex justify-center ">
       <div className='md:w-[50%] flex  justify-center items-center '>
          <div className="flex flex-col md:h-[60%] md:w-[60%] ">
-           <p className="text-white text-3xl ">Let`s Get Started</p>
+           <p className="text-white text-3xl ">Let's Get Started</p>
            <span className="text-white mt-8">E-mail</span>
-           <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 bg-black border-white border-2 rounded-xl px-6 py-2 text-white"></input>
            <span className="text-white mt-8">Password</span>
-           <input onChange={(e)=>setpassword(e.target.value)}   className="bg-transparent mt-2 bg-white border-white border-2 rounded-xl px-6 py-2"></input>
+           <input   onChange={(e)=>setpassword(e.target.value)}   className="bg-transparent mt-2 bg-black border-white border-2 rounded-xl px-6 py-2 text-white"></input>
            {error ?<p className='text-red-700'>{error}</p>:null}
            <div className='flex justify-between items-center text-sm text-white mt-2'>
               <p>
@@ -37,7 +37,7 @@ const Signup = () => {
               </p>
               <p>Need Help?</p>
             </div> 
-           <button onClick={handleClick} className="py-3 mt-4 bg-white rounded-xl">continue</button>
+           <button onClick={handleClick} className="py-3 mt-4 bg-black border-white border-2 rounded-xl text-white">Continue</button>
             <p className='py-4 flex' >
               <span className='text-white'>
                 Already have an account?
