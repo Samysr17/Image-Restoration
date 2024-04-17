@@ -18,6 +18,25 @@ const Impaint = () => {
       { value: 'Home', label: 'Home',color:'black'  },
       { value: 'Denoising', label: 'Denoising',color:'black'  }
     ]
+    const preprocessImage = (inputImage) => {
+      // Create a canvas element to draw the input image
+      const canvas = document.createElement('canvas');
+      canvas.width = inputImage.width;
+      canvas.height = inputImage.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(inputImage, 0, 0);
+    
+      // Convert the canvas to a TensorFlow.js tensor
+      const tensor = tf.browser.fromPixels(canvas).toFloat();
+    
+      // Normalize pixel values to [0, 1]
+      const normalizedInput = tensor.div(255.0);
+    
+      // Resize the image to match the model's input size
+      const resizedInput = tf.image.resizeBilinear(normalizedInput, [128, 128]);
+    
+      return resizedInput;
+    };
     
       const [image,setimage]=useState("");
       const [model,setmodel]=useState(false);

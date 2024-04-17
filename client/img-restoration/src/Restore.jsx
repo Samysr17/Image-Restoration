@@ -9,6 +9,8 @@ import { useState ,useEffect} from 'react';
 import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom'
+import { FaPlusCircle } from "react-icons/fa";
+import { ImgComparisonSlider } from 'img-comparison-slider';
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -81,8 +83,8 @@ const Restore=()=>{
      }
     }
   return (
-    <div className="h-auto w-full bg-[#DFD5D5]">
-    <div className="bg-[#1976D2] w-full h-auto">
+    <div className="h-auto w-full colored">
+    <div className=" w-full h-auto">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
@@ -95,15 +97,16 @@ const Restore=()=>{
         </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-           <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
-            <span>If Image more than 5 kb please Compress</span>
-           <a href="https://imagecompressor.com/"><button>Compress</button></a>
+           <div className="w-[40%] h-[500px] text-white flex flex-col justify-center items-center mt-[3%] border-dashed border-2 border-black">
+       
            <div {...getRootProps()}>
           <input {...getInputProps()} />
                 {
         model ?
-          <p>Drop the files here ...</p> :(
+          
+          <p></p> :(
             <div className="flex flex-col justify-center">
+               <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center text-white " /> 
           <p>Drag 'n' drop some files here, or click to select files</p>
           </div>
           )
@@ -115,15 +118,15 @@ const Restore=()=>{
             <div className="flex-col">
             {model?(<span className="ml-[20%]">Your Image</span>):<div></div>}
             {images?.map(file=>(
-          <img className="h-[200px]"  src={file.source} alt="/"/>
+          <img className="h-[200px] mt-4"  src={file.source} alt="/"/>
        ))}
            </div>
            {model?(<div className="flex-col">
-           <span className="ml-[20%]">Upscaled Image</span>
-           <img download={image} className="h-[200px]"  src={image} alt=""></img>
+           <span className="ml-[20%]">Restored</span>
+           <img download={image} className="h-[200px] mt-4"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           {model?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/10000}</div><span>s</span></div><button onClick={save} className="mt-8">save</button></div>):<div></div>}
+           {model?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/10000}</div><span>s</span></div><button onClick={save} className="mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl ">Save</button></div>):<div></div>}
            </div>
           
            <div className="flex justify-center space-x-4 p-8">
@@ -140,9 +143,23 @@ const Restore=()=>{
                 theme="light"/>
 <ToastContainer /> */}
  
-             <button onClick={handleclick}  className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Continue</button>
-             <button onClick={handledis} className="px-6 py-2 border-2 border-[#1976D2] bg-[#1976D2] text-white rounded-xl">Discard</button>
+             <button onClick={handleclick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
+             <button onClick={handledis} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
+           <div className="flex flex-col justify-center text-white">
+          {/* <div className="flex flex-col"> */}
+           <span >If Image more than 5 kb please Compress</span>
+           <a href="https://imagecompressor.com/"><button className="ml-[35%]">Compress Here</button></a>
+           {/* </div> */}
+           </div>
+           <div className="">
+            <img-comparison-slider>
+            {images?.map(file=>(
+          <img slot="first" className="h-[400px]"  src={file.source} alt="/"/>
+       ))}
+  <img className="h-[400px]" slot="second" src={image} />
+        </img-comparison-slider>
+            </div>
 
         </div>
         </div>
