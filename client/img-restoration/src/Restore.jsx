@@ -11,6 +11,11 @@ import { useCallback } from 'react';
 import { Link } from 'react-router-dom'
 import { FaPlusCircle } from "react-icons/fa";
 import { ImgComparisonSlider } from 'img-comparison-slider';
+import { FaFacebook } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -86,7 +91,7 @@ const Restore=()=>{
     <div className="h-auto w-full colored">
     <div className=" w-full h-auto">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
-           <div className="ml-8">LOGO</div>
+           <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
            <Select className=" text-black" options={options}/>
@@ -126,7 +131,13 @@ const Restore=()=>{
            <img download={image} className="h-[200px] mt-4"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           {model?(<div><div className="flex"><span>Done in</span><div>{window.performance.now()/10000}</div><span>s</span></div><button onClick={save} className="mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl ">Save</button></div>):<div></div>}
+           {model?(<div><div className="flex justify-between mt-4">
+            <div className="flex justify-between">
+            <span>Done in   :</span>
+            <div>{window.performance.now()/10000}<span>s</span></div>
+            </div>
+            </div>
+            <button onClick={save} className="mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl ">Save</button></div>):<div></div>}
            </div>
           
            <div className="flex justify-center space-x-4 p-8">
@@ -146,22 +157,55 @@ const Restore=()=>{
              <button onClick={handleclick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
              <button onClick={handledis} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
-           <div className="flex flex-col justify-center text-white">
+           {!model?<div className="flex flex-col justify-center text-white">
           {/* <div className="flex flex-col"> */}
            <span >If Image more than 5 kb please Compress</span>
-           <a href="https://imagecompressor.com/"><button className="ml-[35%]">Compress Here</button></a>
+           <a href="https://imagecompressor.com/"><button className="ml-[20%] mt-4 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Compress Here</button></a>
            {/* </div> */}
-           </div>
-           <div className="">
+           </div>:<div></div>}
+           {model?<div className="mt-8">
             <img-comparison-slider>
             {images?.map(file=>(
           <img slot="first" className="h-[400px]"  src={file.source} alt="/"/>
        ))}
   <img className="h-[400px]" slot="second" src={image} />
         </img-comparison-slider>
-            </div>
-
+            </div>:<div></div>}
         </div>
+        <div className="w-full h-auto  flex flex-col absolute">
+      <div className="flex justify-between px-16 mt-4 py-4">
+       <div className="flex flex-col text-white">
+        <p className="md:text-2xl text-xl ">Need more information?</p>
+        <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
+       </div>
+       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+        Contact Us
+       </button>
+
+       </div>
+       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  text-white  border-2 rounded-xl border-white bg-transparent">
+        Contact Us
+       </button>
+       <div className="hidden md:flex justify-between px-16  py-4">
+       <div className="flex name text-2xl text-white">
+        Image Restoration
+       </div>
+       <div className="flex justify-between  space-x-4">
+        <FaFacebook size={40} className="text-blue-800"/>
+        <FaInstagram size={40} className="text-red-600"/>
+        <FaTwitter size={40} className="text-blue-400"/>
+        <FaWhatsapp size={40} className="text-green-600"/>
+        <FaLinkedin size={40} className="text-blue-800"/>
+       </div>
+       </div>
+       <div className="md:hidden mt-4 flex justify-center  space-x-4 mb-8">
+        <FaFacebook size={40} className="text-blue-800"/>
+        <FaInstagram size={40} className="text-red-600"/>
+        <FaTwitter size={40} className="text-blue-400"/>
+        <FaWhatsapp size={40} className="text-green-600"/>
+        <FaLinkedin size={40} className="text-blue-800"/>
+       </div>
+    </div>
         </div>
   )
 }
