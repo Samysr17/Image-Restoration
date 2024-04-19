@@ -14,14 +14,16 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { MdChevronLeft,MdChevronRight } from "react-icons/md"
+import { MdChevronLeft,MdChevronRight } from "react-icons/md";
+import { Link } from 'react-router-dom';
 const Profile = () => {
   const {user}=UserAuth();
+  const [selectedOption, setSelectedOption] = useState("Restoration");
   const options = [
-    { value: 'Restoration', label: 'Restoration',color:'black' },
-    { value: 'Collage', label: 'Collage',color:'black'  },
-    { value: 'Home', label: 'Home',color:'black'  },
-    { value: 'Denoising', label: 'Denoising',color:'black'  }
+    { value: 'Restoration', label: 'Restoration',color:'black',route:'/Restore' },
+    { value: 'Collage', label: 'Collage',color:'black',route:'/Collage'  },
+    { value: 'Home', label: 'Home',color:'black',route:'/Info' },
+    { value: 'Denoising', label: 'Denoising',color:'black',route:'/Denoising' }
   ]
   // const [collage,setcollage]=useState(false);
   // const [collage_1,setcollage_1]=useState(false);
@@ -161,10 +163,11 @@ const Profile = () => {
            <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select className=" text-black" options={options}/>
+           <Link to={selectedOption.route}><Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options}  /></Link>
               <p>{user.email}</p>
               <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
-              <p>Account</p>
+              <p>Log Out</p>
            </div>
         </div>
         </div>

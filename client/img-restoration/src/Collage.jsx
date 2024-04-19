@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
+import { db } from './Firebase';
+import { arrayUnion,doc,updateDoc,onSnapshot} from 'firebase/firestore';
 import { useCallback } from 'react';
 import {useDropzone} from 'react-dropzone'
 import { FaPlusCircle } from "react-icons/fa";
@@ -6,10 +8,16 @@ import Select from 'react-select';
 import { ReactPhotoCollage } from "react-photo-collage";
 import { UserAuth } from './Context/AuthContext'
 import { Link } from 'react-router-dom';
+import { FaFacebook } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 // import { useNavigate } from "react-router-dom";
 
 const Collage = () => {
     const {user}=UserAuth();
+    const [dec,setdec]=useState(0);
     const [selectedOption, setSelectedOption] = useState("Restoration");
     const options = [
       { value: 'Restoration', label: 'Restoration',color:'black',route:'/Restore' },
@@ -37,6 +45,11 @@ const Collage = () => {
         ))
       }, [])
       const {getRootProps, getInputProps,isDragActive} = useDropzone({onDrop});
+      useEffect(()=>{
+        onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
+         setdec(doc.data()?.credits);
+        })
+       },[user?.email])
       const handleClick = () => {
         setcollage(!collage);
       };
@@ -48,14 +61,13 @@ const Collage = () => {
     <div className="h-auto w-full colored">
     <div className=" w-full h-auto">
         <div className="flex justify-between h-[80px] p-6 w-full  text-white">
-           <div className="ml-8">LOGO</div>
+           <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
            <Link to={selectedOption.route}><Select  className=" text-black"  defaultValue={selectedOption}
         onChange={setSelectedOption} options={options}  /></Link>
               <p>{user.email}</p>
-              <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
-              <p>Account</p>
+              <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
            </div>
         </div>
         </div>
@@ -80,7 +92,7 @@ const Collage = () => {
            </div>
         <div className="flex w-[70%] p-4 justify-center space-x-4">
        {images?.map(file=>(
-          <img className="w-[20%]"  src={file.source} alt="/"/>
+          <img className="w-[20%] h-[200px]"  src={file.source} alt="/"/>
           
        ))}
        </div>
@@ -100,6 +112,40 @@ const Collage = () => {
            </div>
 
         </div>
+        <div className="w-full h-auto  flex flex-col absolute">
+      <div className="flex justify-between px-16 mt-4 py-4">
+       <div className="flex flex-col text-white">
+        <p className="md:text-2xl text-xl ">Need more information?</p>
+        <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
+       </div>
+       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+        Contact Us
+       </button>
+
+       </div>
+       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  text-white  border-2 rounded-xl border-white bg-transparent">
+        Contact Us
+       </button>
+       <div className="hidden md:flex justify-between px-16  py-4">
+       <div className="flex name text-2xl text-white">
+        Image Restoration
+       </div>
+       <div className="flex justify-between  space-x-4">
+        <FaFacebook size={40} className="text-blue-800"/>
+        <FaInstagram size={40} className="text-red-600"/>
+        <FaTwitter size={40} className="text-blue-400"/>
+        <FaWhatsapp size={40} className="text-green-600"/>
+        <FaLinkedin size={40} className="text-blue-800"/>
+       </div>
+       </div>
+       <div className="md:hidden mt-4 flex justify-center  space-x-4 mb-8">
+        <FaFacebook size={40} className="text-blue-800"/>
+        <FaInstagram size={40} className="text-red-600"/>
+        <FaTwitter size={40} className="text-blue-400"/>
+        <FaWhatsapp size={40} className="text-green-600"/>
+        <FaLinkedin size={40} className="text-blue-800"/>
+       </div>
+    </div>
         </div>
         
   )

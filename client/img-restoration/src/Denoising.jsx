@@ -16,6 +16,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import { ImgComparisonSlider } from 'img-comparison-slider';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Denoising = () => {
@@ -53,6 +54,7 @@ const Denoising = () => {
       const {getRootProps, getInputProps} = useDropzone({onDrop});
       const handleclick_1=(item)=>{
         navigate(item.route)
+        return;
       }
       const handleclick=()=>{
        
@@ -102,9 +104,9 @@ const Denoising = () => {
            <div className="ml-8 name text-2xl">Image Restoratiion</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select  className=" text-black"  defaultValue={selectedOption}
-        onChange={setSelectedOption} options={options} onClick={handleclick_1(selectedOption)} />
-              <p>{user.email}</p>
+           <Link to={selectedOption.route}><Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options}  /></Link>
+             <Link to="/Profile"><p>{user.email}</p></Link> 
               <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
               <p>Account</p>
            </div>
@@ -164,7 +166,7 @@ const Denoising = () => {
            <a href="https://imagecompressor.com/"><button className="ml-[20%] mt-4 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Compress Here</button></a>
            {/* </div> */}
            </div>:<div></div>}
-        {model_1?<div className="mt-8">
+        {model_1?<div className="mt-8 flex justify-center">
             <img-comparison-slider>
             {images?.map(file=>(
           <img slot="first" className="h-[400px]"  src={file.source} alt="/"/>

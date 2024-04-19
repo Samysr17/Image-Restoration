@@ -105,9 +105,8 @@ const Restore=()=>{
            <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select  className=" text-black"  defaultValue={selectedOption}
-        onChange={setSelectedOption} options={options} onClick={handleclick_1(selectedOption)} />
-              {console.log(selectedOption)}
+           <Link to={selectedOption.route}><Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options}  /></Link>
               <p><Link to="/Profile">{user.email}</Link></p>
               <button className="bg-white rounded-md  w-24 text-black">{dec} credits</button>
               <p>Account</p>
