@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import Upscaler from "upscaler";
 import model from '@upscalerjs/maxim-denoising';
 import Select from 'react-select';
@@ -7,7 +7,7 @@ import { UserAuth } from './Context/AuthContext'
 import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
 import { db } from './Firebase';
-import { arrayUnion,doc,updateDoc} from 'firebase/firestore';
+import { arrayUnion,doc,updateDoc,onSnapshot} from 'firebase/firestore';
 import { FaFacebook } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
@@ -25,6 +25,12 @@ const Denoising = () => {
     { value: 'Info', label: 'Info',color:'black'  },
     { value: 'Account', label: 'Account',color:'black'  }
   ]
+  const [dec,setdec]=useState(0);
+  useEffect(()=>{
+    onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
+     setdec(doc.data()?.credits);
+    })
+   },[user?.email])
     const upscaler = new Upscaler({
         model,
       });
@@ -52,6 +58,10 @@ const Denoising = () => {
           window.alert("Please select an Image");
           return ;
         }
+        if(dec<=20){
+          window.alert("Please Buy Credits in your to continue")
+          return ;
+        }
         images.map(file=>{
           upscaler.upscale(file.source, { patchSize: 64, padding: 2, progress: console.log }).then((upscaledImage)=>{
             const img = document.createElement("img")
@@ -73,7 +83,8 @@ const Denoising = () => {
       await updateDoc(uid,{
         saved_d_images:arrayUnion({
           img:image
-        })
+        }),
+        credits:dec-20
       })
      }
     }
@@ -86,7 +97,7 @@ const Denoising = () => {
            
            <Select className=" text-black" options={options} />
               <p>{user.email}</p>
-              <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
+              <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
               <p>Account</p>
            </div>
         </div>

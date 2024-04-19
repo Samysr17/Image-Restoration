@@ -60,6 +60,10 @@ const Restore=()=>{
           window.alert("Please select an Image");
           return ;
         }
+        if(dec<=20){
+          window.alert("Please Buy Credits in your account to continue")
+          return ;
+        }
         images.map(file=>{
           upscaler.upscale(file.source).then(upscaledImage => {
             const img = document.createElement("img")
