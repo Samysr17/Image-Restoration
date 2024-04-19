@@ -14,7 +14,7 @@ const Signup = () => {
      e.preventDefault();
      try{
       await createUser(email,password);
-      navigate("/info");
+      navigate("/Signin");
      }catch(error){
       seterror(error.message);
      }

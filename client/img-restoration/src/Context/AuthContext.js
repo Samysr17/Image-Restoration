@@ -1,6 +1,6 @@
 import { createContext,useContext,useState,useEffect } from "react";
 import {auth,db} from "../Firebase";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,RecaptchaVerifier,signInWithPhoneNumber} from "firebase/auth";
+import { createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut,RecaptchaVerifier,signInWithPhoneNumber,sendEmailVerification} from "firebase/auth";
 import { setDoc,doc } from "firebase/firestore";
 
 const AuthContext=createContext();
@@ -9,7 +9,12 @@ const AuthContext=createContext();
 export function AuthContextProvider({children}){
     const [user,setuser]=useState({});
     function createUser(email,password){
-        createUserWithEmailAndPassword(auth,email,password);
+        createUserWithEmailAndPassword(auth,email,password).then(()=>{
+            sendEmailVerification(auth.currentUser);
+            signOut(auth);
+            alert("Email sent");
+        })
+        .catch(alert);
         setDoc(doc(db,'users',email),{
             saved_r_images:[],
             saved_d_images:[],
@@ -27,6 +32,7 @@ export function AuthContextProvider({children}){
     useEffect(()=>{
         const user_state=onAuthStateChanged(auth,(currentUser)=>{
             setuser(currentUser);
+            
         })
         return ()=>{
            user_state();

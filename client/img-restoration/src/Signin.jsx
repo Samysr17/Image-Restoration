@@ -5,16 +5,23 @@ import { useState } from 'react'
 import { UserAuth } from './Context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 const Signin = () => {
-  const {login}=UserAuth();
+  const {user,login}=UserAuth();
   const [email,setemail]=useState('');
   const [password,setpassword]=useState('');
   const [error,seterror]=useState('');
   const navigate=useNavigate();
+  // console.log(user);
+  // console.log(user.emailVerified)
   const handleclick=async(e)=>{
     e.preventDefault();
     try{
       await login(email,password);
-      navigate("/info");
+      if(user?.emailVerified===true){
+        navigate("/info");
+      }else{
+        window.alert("Please Verify Email to Continue or Reload")
+      }
+      
     }catch(error){
       seterror(error);
       console.log(error);

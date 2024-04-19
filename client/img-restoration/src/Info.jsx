@@ -1,7 +1,10 @@
-import React from 'react'
-import pic_1 from './assets/pic_1.jpg'
-import pic_2 from './assets/pic_2.jpg'
-import pic_3 from './assets/pic_3.jpg'
+import React from 'react';
+import pic_1 from './assets/pic_1.jpg';
+import pic_2 from './assets/pic_2.jpg';
+import pic_in_1 from './assets/pic_in_1.jpg';
+import pic_in_2 from './assets/pic_in_2.jpg'
+import pic_in_3 from './assets/pic_in_3.jpg'
+import pic_in_4 from './assets/pic_in_4.png'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -14,10 +17,13 @@ import { UserAuth } from './Context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { ImgComparisonSlider } from 'img-comparison-slider';
-
+import {useState,useEffect} from 'react'
+import { db } from './Firebase';
+import { doc,onSnapshot} from 'firebase/firestore';
 const Info = () => {
   const {user,logout}=UserAuth();
   const  navigate=useNavigate();
+  const [dec,setdec]=useState();
 //   var divisor = document.getElementById("divisor"),
 //     handle = document.getElementById("handle"),
 //     slider_Q = document.getElementById("slider_1");
@@ -46,41 +52,54 @@ const Info = () => {
   const data = [
     {
       name: `Image Restoration`,
-      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua KKR BEST TEAM IN DA WORLD.STUPID STEVE KERR `
+      img:pic_in_2,
+      review: `Enhance the clarity and detail of your images with our super resolution technology. Unlock the hidden potential in your images and experience a whole new level of detail.Whether it's for printing, experience the power of high-definition imagery like never before. `,
+      route:'/Restore'
     },
     {
       name: `Image Denoising`,
-      img:pic_1,
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      img:pic_in_1,
+      review: ` Whether it's reducing noise from photographs taken in low-light conditions or cleaning up scanned images, our powerful algorithms effectively remove unwanted artifacts while preserving important details. Experience sharper and more professional-looking images with our image denoising service.`,
+      route:'/Denoising'
     },
     {
       name: `Collage Maker`,
-      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      img:pic_in_4,
+      review: `Transform your collection of photos into a captivating collage that tells your unique story. Our intuitive collage creation tools allow you to arrange, resize, and customize your images with ease.Create stunning visual compositions that capture the essence of your memories or brand.`,
+      route:'/Collage'
     },
     {
-      name: `Image Slider`,
-      img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      name: `Image Inpainting`,
+      img:pic_in_3,
+      review: `Image inpainting is the process of filling in missing or damaged parts of an image. Whether it's removing an unwanted object or restoring an old photograph, our advanced algorithms seamlessly reconstruct the missing areas, preserving the integrity and realism of the original image.`,
+      route:'/Info'
     },
     {
       name: `Download Images `,
       img:'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg',
-      review: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
+      review: `
+      Download image services provide quick access to high-quality images for various purposes, offering convenience and flexibility. Users can find, select, and acquire images for personal or professional use efficiently.Credits are required to avail this service.`,
+      route:'/Profile'
     },
     
   ];
+  useEffect(()=>{
+    onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
+     setdec(doc.data()?.credits);
+    })
+   },[user?.email]);
+   const handleclick_1=(item)=>{
+      navigate(item.route);
+   }
 
   return (<div>
     <div className="colored w-full  h-auto">
     <div className="">
         <div className=" flex justify-between h-[80px] p-6 w-full  text-white">
-           <div className="ml-8">LOGO</div>
+           <div className="name  text-2xl">Image Restoration</div>
            <div className="hidden md:flex space-x-16 mr-8">
-              <p>About</p>
-              <p>{user.email}</p>
-              <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
+              <Link to="/Profile"><p>{user.email}</p></Link>
+              <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
               <p className="cursor-pointer" onClick={handleclick}>Log Out</p>
            </div>
            <div className="md:hidden mr-8">Hamburger</div>
@@ -88,12 +107,12 @@ const Info = () => {
         <div className="md:flex w-full h-screen  ">
             <div className=" flex flex-col  md:w-[70%] justify-center items-center">
               <p className="md:text-4xl text-xl font-semibold md:w-[50%] text-white">Image Restoration: A New Lens to the Past</p>
-              <button className="bg-transparent border-2 border-white text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"><Link to="/collage">Try Now !</Link></button>
+            <button className="bg-transparent border-2 border-white text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"> <a href="https://image-inpainting.streamlit.app/">Try Now !</a></button>
             </div>
             <div className="">
             <img-comparison-slider>
-  <img className="h-screen w-full" slot="first" src={pic_1}/>
-  <img className="h-screen w-full" slot="second" src={pic_2} />
+          <img className="h-screen w-full" slot="first" src={pic_1}/>
+          <img className="h-screen w-full" slot="second" src={pic_2} />
         </img-comparison-slider>
             </div>
            
@@ -113,7 +132,7 @@ const Info = () => {
             <div className=" bg-gradient-to-l from-[#797676] to-[#040708] flex flex-col  h-auto items-center justify-center gap-4 p-4">
               <p className="text-xl text-white font-semibold">{d.name}</p>
               <p className="text-center text-white">{d.review}</p>
-              <button className='bg-transparent mt-6  border-2 border-white text-white text-lg px-6 py-1 rounded-xl'>Try Now!</button>
+              <button onClick={()=>handleclick_1(d)} className='bg-transparent mt-  border-2 border-white text-white text-lg px-6 py-1 rounded-xl'>Try Now!</button>
             </div>
           </div>
         ))}
@@ -135,8 +154,8 @@ const Info = () => {
         Contact Us
        </button>
        <div className="hidden md:flex justify-between px-16  py-4">
-       <div className="flex text-2xl text-white">
-        LOGO
+       <div className="flex text-2xl name text-white">
+        Image Restoration
        </div>
        <div className="flex justify-between  space-x-4">
         <FaFacebook size={40} className="text-blue-800"/>

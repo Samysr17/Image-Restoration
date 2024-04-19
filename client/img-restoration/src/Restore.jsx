@@ -16,6 +16,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -23,12 +24,14 @@ import { FaLinkedin } from "react-icons/fa";
 const Restore=()=>{
   const {user}=UserAuth();
   const [saved,setsaved]=useState(false);
+  const navigate=useNavigate();
   const [dec,setdec]=useState(0);
+  const [selectedOption, setSelectedOption] = useState("Restoration");
   const options = [
-    { value: 'Restoration', label: 'Restoration',color:'black' },
-    { value: 'Collage', label: 'Collage',color:'black'  },
-    { value: 'Home', label: 'Home',color:'black'  },
-    { value: 'Denoising', label: 'Denoising',color:'black'  }
+    { value: 'Restoration', label: 'Restoration',color:'black',route:'/Restore' },
+    { value: 'Collage', label: 'Collage',color:'black',route:'/Collage'  },
+    { value: 'Home', label: 'Home',color:'black',route:'/Info' },
+    { value: 'Denoising', label: 'Denoising',color:'black',route:'/Denoising' }
   ]
   useEffect(()=>{
     onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
@@ -61,7 +64,7 @@ const Restore=()=>{
           return ;
         }
         if(dec<=20){
-          window.alert("Please Buy Credits in your account to continue")
+          window.alert("Please Buy Credits in your to continue")
           return ;
         }
         images.map(file=>{
@@ -78,6 +81,10 @@ const Restore=()=>{
    
     const handledis=()=>{
       window.location.reload();
+    }
+    const handleclick_1=(item)=>{
+      navigate(item.route)
+      return;
     }
     const uid=doc(db,'users',`${user?.email}`);
     const save=async()=>{
@@ -98,7 +105,9 @@ const Restore=()=>{
            <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select className=" text-black" options={options}/>
+           <Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options} onClick={handleclick_1(selectedOption)} />
+              {console.log(selectedOption)}
               <p><Link to="/Profile">{user.email}</Link></p>
               <button className="bg-white rounded-md  w-24 text-black">{dec} credits</button>
               <p>Account</p>
@@ -172,7 +181,7 @@ const Restore=()=>{
             {images?.map(file=>(
           <img slot="first" className="h-[400px]"  src={file.source} alt="/"/>
        ))}
-  <img className="h-[400px]" slot="second" src={image} />
+  <img className="h-[400px]" slot="second" src={image} alt="/" />
         </img-comparison-slider>
             </div>:<div></div>}
         </div>

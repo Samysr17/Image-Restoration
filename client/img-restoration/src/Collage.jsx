@@ -5,16 +5,18 @@ import { FaPlusCircle } from "react-icons/fa";
 import Select from 'react-select';
 import { ReactPhotoCollage } from "react-photo-collage";
 import { UserAuth } from './Context/AuthContext'
+import { Link } from 'react-router-dom';
 // import { useNavigate } from "react-router-dom";
 
 const Collage = () => {
     const {user}=UserAuth();
+    const [selectedOption, setSelectedOption] = useState("Restoration");
     const options = [
-        { value: 'Restoration', label: 'Restoration',color:'black' },
-        { value: 'Denoising', label: 'Denoising',color:'black'  },
-        { value: 'Home', label: 'Home',color:'black'  },
-        { value: 'Account', label: 'Account',color:'black'  }
-      ]
+      { value: 'Restoration', label: 'Restoration',color:'black',route:'/Restore' },
+      { value: 'Collage', label: 'Collage',color:'black',route:'/Collage'  },
+      { value: 'Home', label: 'Home',color:'black',route:'/Info' },
+      { value: 'Denoising', label: 'Denoising',color:'black',route:'/Denoising' }
+    ]
       // const navigate = useNavigate();
       const [images,setimages]=useState([]);
       const [collage,setcollage]=useState(false);
@@ -49,7 +51,8 @@ const Collage = () => {
            <div className="ml-8">LOGO</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select className=" text-black" options={options} />
+           <Link to={selectedOption.route}><Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options}  /></Link>
               <p>{user.email}</p>
               <button className="bg-white rounded-md  w-24 text-black">100 Credits</button>
               <p>Account</p>

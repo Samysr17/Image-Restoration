@@ -10,8 +10,9 @@ import Phone from "./Phone";
 import Restore from "./Restore";
 import Denoising from "./Denoising";
 import Impaint from "./Impaint";
+import Verify from "./Verify";
 import { AuthContextProvider } from "./Context/AuthContext";
-import Demo from "./demo";
+// import Demo from "./demo";
 function App() {
   return (
     <div className="App">
@@ -28,7 +29,7 @@ function App() {
       <Route path="/Restore" element={<Restore/>} />
       <Route path="/Denoising" element={<Denoising/>}/>
       <Route path="/Impaint" element={<Impaint/>}></Route>
-      <Route path="/demo" element={<Demo/>}></Route>
+      <Route path="/Verify" element={<Verify/>}></Route>
     </Routes>
     </BrowserRouter>
     </AuthContextProvider>

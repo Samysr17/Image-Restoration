@@ -15,15 +15,19 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { FaPlusCircle } from "react-icons/fa";
 import { ImgComparisonSlider } from 'img-comparison-slider';
+import { useNavigate } from 'react-router-dom';
+
 
 const Denoising = () => {
   const {user}=UserAuth();
+  const navigate=useNavigate();
   const [saved,setsaved]=useState(false);
+  const [selectedOption, setSelectedOption] = useState("Restoration");
   const options = [
-    { value: 'Restoration', label: 'Restoration',color:'black' },
-    { value: 'collage', label: 'Collage',color:'black'  },
-    { value: 'Info', label: 'Info',color:'black'  },
-    { value: 'Account', label: 'Account',color:'black'  }
+    { value: 'Restoration', label: 'Restoration',color:'black',route:'/Restore' },
+    { value: 'Collage', label: 'Collage',color:'black',route:'/Collage'  },
+    { value: 'Home', label: 'Home',color:'black',route:'/Info' },
+    { value: 'Denoising', label: 'Denoising',color:'black',route:'/Denoising' }
   ]
   const [dec,setdec]=useState(0);
   useEffect(()=>{
@@ -47,6 +51,9 @@ const Denoising = () => {
         ));
       }, [])
       const {getRootProps, getInputProps} = useDropzone({onDrop});
+      const handleclick_1=(item)=>{
+        navigate(item.route)
+      }
       const handleclick=()=>{
        
         if(images.length>1){
@@ -95,7 +102,8 @@ const Denoising = () => {
            <div className="ml-8 name text-2xl">Image Restoratiion</div>
            <div className="flex space-x-16 mr-8">
            
-           <Select className=" text-black" options={options} />
+           <Select  className=" text-black"  defaultValue={selectedOption}
+        onChange={setSelectedOption} options={options} onClick={handleclick_1(selectedOption)} />
               <p>{user.email}</p>
               <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
               <p>Account</p>
