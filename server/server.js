@@ -32,8 +32,8 @@ app.post("/api/create-checkout-session",async(req,res)=>{
         payment_method_types:["card"],
         line_items:lineItems,
         mode:"payment",
-        success_url:"https://image-restoration/Profile",
-        cancel_url:"http://image-restoration/Profile",
+        success_url:"https://image-restoration.netlify.app/Profile",
+        cancel_url:"https://image-restoration.netlify.app/Profile",
     });
 
     res.json({id:session.id})
