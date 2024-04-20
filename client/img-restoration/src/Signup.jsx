@@ -21,7 +21,7 @@ const Signup = () => {
   }
   return (
     <div className="">
-    <div className=" bg-black w-full h-screen flex justify-center ">
+    <div className=" colored w-full h-screen flex justify-center ">
       <div className='md:w-[50%] flex  justify-center items-center '>
          <div className="flex flex-col md:h-[60%] md:w-[60%] ">
            <p className="text-white text-3xl ">Let's Get Started</p>
@@ -37,7 +37,7 @@ const Signup = () => {
               </p>
               <p>Need Help?</p>
             </div> 
-           <button onClick={handleClick} className="py-3 mt-4 bg-black border-white border-2 rounded-xl text-white">Continue</button>
+           <button onClick={handleClick} className="py-3 mt-4 border-white border-2 rounded-xl text-white">Continue</button>
             <p className='py-4 flex' >
               <span className='text-white'>
                 Already have an account?
