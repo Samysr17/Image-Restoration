@@ -71,7 +71,6 @@ const Restore=()=>{
           upscaler.upscale(file.source).then(upscaledImage => {
             const img = document.createElement("img")
             img.src = upscaledImage
-            // document.body.appendChild(img)
             setimage(img.src);
             setmodel(!model);
             console.log(upscaledImage);
