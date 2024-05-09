@@ -10,7 +10,6 @@ import {useDropzone} from 'react-dropzone';
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom'
 import { FaPlusCircle } from "react-icons/fa";
-import { ImgComparisonSlider } from 'img-comparison-slider';
 import { FaFacebook } from "react-icons/fa";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
