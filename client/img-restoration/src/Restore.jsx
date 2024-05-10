@@ -163,7 +163,7 @@ const Restore=()=>{
                 pauseOnHover
                 theme="light"/>
 <ToastContainer /> */}
- 
+               {/* //Routes Protection */}
              <button onClick={handleclick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
              <button onClick={handledis} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
