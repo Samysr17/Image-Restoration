@@ -15,7 +15,8 @@ import { FaWhatsapp } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+
+
 
 // import { ToastContainer, toast } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +24,7 @@ import { useNavigate } from 'react-router-dom';
 const Restore=()=>{
   const {user}=UserAuth();
   const [saved,setsaved]=useState(false);
-  const navigate=useNavigate();
+  const [load,setload]=useState(false);
   const [dec,setdec]=useState(0);
   const [selectedOption, setSelectedOption] = useState("Restoration");
   const options = [
@@ -66,24 +67,27 @@ const Restore=()=>{
           window.alert("Please Buy Credits in your to continue")
           return ;
         }
+        setload(!load);
         images.map(file=>{
           upscaler.upscale(file.source).then(upscaledImage => {
             const img = document.createElement("img")
             img.src = upscaledImage
             setimage(img.src);
             setmodel(!model);
+            setload(load);
             console.log(upscaledImage);
           })
         })
+        
     }
    
     const handledis=()=>{
       window.location.reload();
     }
-    const handleclick_1=(item)=>{
-      navigate(item.route)
-      return;
-    }
+    // const handleclick_1=(item)=>{
+    //   navigate(item.route)
+    //   return;
+    // }
     const uid=doc(db,'users',`${user?.email}`);
     const save=async()=>{
      if(user?.email){
@@ -111,6 +115,7 @@ const Restore=()=>{
            </div>
         </div>
         </div>
+     
         <div className="flex flex-col justify-center items-center">
            <div className="w-[40%] h-[500px] text-white flex flex-col justify-center items-center mt-[3%] border-dashed border-2 border-black">
        
@@ -127,6 +132,7 @@ const Restore=()=>{
           )
          }
        <div className="flex flex-col items-center ">
+         {load?<div className="lds-ring"><div></div><div></div><div></div><div></div></div>:<div></div>}
         </div>
            </div>
            <div className="flex space-x-4 justify-between">

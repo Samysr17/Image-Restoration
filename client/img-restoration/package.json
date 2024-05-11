@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.15.17",
     "@preline/carousel": "^2.0.2",
     "@stripe/stripe-js": "^3.3.0",
     "@tensorflow/tfjs": "^4.17.0",

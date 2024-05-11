@@ -40,6 +40,7 @@ const Denoising = () => {
         model,
       });
       const [image,setimage]=useState("");
+      const [load,setload]=useState(false);
       const [model_1,setmodel_1]=useState(false);
       const [images,setimages]=useState([]);
       const[error,seterror]=useState(false);
@@ -71,6 +72,7 @@ const Denoising = () => {
           window.alert("Please Buy Credits in your to continue")
           return ;
         }
+        setload(!load);
         images.map(file=>{
           upscaler.upscale(file.source, { patchSize: 64, padding: 2, progress: console.log }).then((upscaledImage)=>{
             const img = document.createElement("img")
@@ -78,6 +80,7 @@ const Denoising = () => {
             // document.body.appendChild(img)
             setimage(img.src);
             setmodel_1(!model_1);
+            setload(load);
             console.log(upscaledImage);
           })
         })
@@ -113,19 +116,23 @@ const Denoising = () => {
         </div>
         </div>
         <div className="flex flex-col justify-center items-center">
+     
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
+           
            <div {...getRootProps()}>
           <input {...getInputProps()} />
                 {
         model_1 ?
           <p></p> :(
             <div className="flex flex-col justify-center text-white">
-              <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center text-white " />
+          
           <p>Drag 'n' drop some files here, or click to select files</p>
+          <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center text-white mb-8 " />
           </div>
           )
          }
        <div className="flex flex-col items-center ">
+       {load?<div className="lds-ring"><div></div><div></div><div></div><div></div></div>:<div></div>}
         </div>
            </div>
            <div className="flex space-x-4 justify-between">
