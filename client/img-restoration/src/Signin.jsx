@@ -37,7 +37,7 @@ const Signin = () => {
                <span  className="text-white mt-8">E-mail</span>
                <input onChange={(e)=>setemail(e.target.value)}  className="bg-transparent mt-2 text-white bg-black border-white border-2 rounded-xl px-6 py-2"></input>
                <span  className="text-white mt-8">Password</span>
-               <input onChange={(e)=>setpassword(e.target.value)}  className="bg-transparent text-white mt-2 bg-black border-white border-2 rounded-xl px-6 py-2"></input>
+               <input type="password" onChange={(e)=>setpassword(e.target.value)}  className="bg-transparent text-white mt-2 bg-black border-white border-2 rounded-xl px-6 py-2"></input>
                {error ?<p className='text-red-700'>{error}</p>:null}
                <div className='flex justify-between items-center text-sm text-white mt-2'>
                   <p>
