@@ -30,6 +30,7 @@ const Profile = () => {
   const [dec,setdec]=useState(0);
   const [r_imgs,setr_imgs]=useState([]);
   const [d_imgs,setd_imgs]=useState([]);
+  const [load,setload]=useState(false);
   const [payment,setpayment]=useState(false);
   useEffect(()=>{
    onSnapshot(doc(db,'users',`${user?.email}`),(doc)=>{
@@ -101,15 +102,7 @@ const Profile = () => {
    const handleclick=async(item)=>{
     if(user?.email){
       setplan(!plan);
-      toast.success('Loading Payment!!!', {
-        position: "top-right",
-        autoClose: 20000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        });
+      setload(!load);
       const stripe = await loadStripe("pk_test_51OB9TcSB3m3uX235oYnbAGt7I1TflMXxSLco872UxB27EUY0KqPVTnXHR9z8V5OxPbeV0ZQpYz7rWDY7UKsTPriH005xaPamUu");
       const body = {
           products:[{id:item.id,title:item.title,price:item.price,quantity:item.quantity}]
@@ -134,7 +127,7 @@ const Profile = () => {
           sessionId:session.id,
       });
       
-       
+       setload(load);
      
       // console.log(result)
       // console.log(session.id)
@@ -173,6 +166,9 @@ const Profile = () => {
         </div>
         <div className="flex flex-col space-y-8">
           <div className="flex justify-center text-xl text-white mt-8">Purchase Credits</div>
+          <div className="flex  justify-center">
+          {load?<div className="lds-ring flex items-center"><div></div><div></div><div></div><div></div></div>:<div></div>}
+          </div>
         <div
           className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-8  place-items-center w-9/12 mx-auto
         mt-16"
