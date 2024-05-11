@@ -50,6 +50,7 @@ const Collage = () => {
          setdec(doc.data()?.credits);
         })
        },[user?.email])
+       console.log(dec);
       const handleClick = () => {
         setcollage(!collage);
       };

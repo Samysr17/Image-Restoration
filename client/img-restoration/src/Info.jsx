@@ -39,7 +39,7 @@ const Info = () => {
   const handleclick=async(e)=>{
     e.preventDefault()
     await logout();
-    navigate("/signup");
+    navigate("/");
   }
   const settings = {
     dots: true,

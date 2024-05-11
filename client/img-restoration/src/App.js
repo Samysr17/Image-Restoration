@@ -1,6 +1,5 @@
 import React from "react";
 import {BrowserRouter,Routes,Route} from "react-router-dom";
-
 import Signin from "./Signin";
 import Signup from "./Signup";
 import Info from "./Info";
@@ -12,6 +11,7 @@ import Denoising from "./Denoising";
 import Impaint from "./Impaint";
 import Verify from "./Verify";
 import { AuthContextProvider } from "./Context/AuthContext";
+import ProtectedRoute from "./ProtectedRoute";
 // import Demo from "./demo";
 function App() {
   return (
@@ -21,12 +21,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Signup/>} />
       <Route path="/SignIn" element={<Signin/>} />
-      <Route path="/Info" element={<Info/>} />
-      <Route path="/Profile" element={<Profile/>}/>
-      <Route path="/Collage" element={<Collage/>} />
+      <Route path="/Info" element={<ProtectedRoute><Info/></ProtectedRoute>}/>
+      <Route path="/Profile" element={<ProtectedRoute><Profile/></ProtectedRoute>}/>
+      <Route path="/Collage" element={<ProtectedRoute><Collage/></ProtectedRoute>} />
       <Route path="/Phone" element={<Phone/>} />
-      <Route path="/Restore" element={<Restore/>} />
-      <Route path="/Denoising" element={<Denoising/>}/>
+      <Route path="/Restore" element={<ProtectedRoute><Restore/></ProtectedRoute>}/>
+      <Route path="/Denoising" element={<ProtectedRoute><Denoising/></ProtectedRoute>}/>
       <Route path="/Impaint" element={<Impaint/>}></Route>
       <Route path="/Verify" element={<Verify/>}></Route>
     </Routes>

@@ -52,10 +52,10 @@ const Denoising = () => {
         ));
       }, [])
       const {getRootProps, getInputProps} = useDropzone({onDrop});
-      const handleclick_1=(item)=>{
-        navigate(item.route)
-        return;
-      }
+      // const handleclick_1=(item)=>{
+      //   navigate(item.route)
+      //   return;
+      // }
       const handleclick=()=>{
        
         if(images.length>1){
