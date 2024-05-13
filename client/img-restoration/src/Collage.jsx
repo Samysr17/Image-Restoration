@@ -61,7 +61,7 @@ const Collage = () => {
   return (
     <div className="h-auto w-full colored">
     <div className=" w-full h-auto">
-        <div className="flex justify-between h-[80px] p-6 w-full  text-white">
+        <div className="flex justify-between h-[80px] p-6 w-full  text-white cursor-pointer">
            <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
@@ -72,7 +72,7 @@ const Collage = () => {
            </div>
         </div>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center cursor-pointer">
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
            <div {...getRootProps()}>
           <input {...getInputProps()} />
@@ -108,8 +108,8 @@ const Collage = () => {
                </div>
            </div>
            <div className="flex justify-center space-x-4 p-8">
-             <button onClick={handleClick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
-             <button onClick={discard} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
+             <button onClick={handleClick}  className=" hover:text-black hover:bg-white hover:ease-in duration-700 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
+             <button onClick={discard} className="  hover:text-black hover:bg-white hover:ease-in duration-700 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
 
         </div>
@@ -119,12 +119,12 @@ const Collage = () => {
         <p className="md:text-2xl text-xl ">Need more information?</p>
         <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
        </div>
-       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+       <button className="md:text-2xl hidden md:flex text-white md:px-6  hover:text-black hover:bg-white hover:ease-in duration-700  md:py-3 border-2 rounded-xl border-white bg-transparent">
         Contact Us
        </button>
 
        </div>
-       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  text-white  border-2 rounded-xl border-white bg-transparent">
+       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  text-white  border-2 rounded-xl  hover:text-black hover:bg-white hover:ease-in duration-700 border-white bg-transparent">
         Contact Us
        </button>
        <div className="hidden md:flex justify-between px-16  py-4">

@@ -46,7 +46,7 @@ const Signin = () => {
                   </p>
                   <p>Need Help?</p>
                 </div>
-               <button onClick={handleclick} className="py-3 mt-4  border-2 text-white border-white rounded-xl">Log In</button>
+               <button onClick={handleclick} className="py-3  hover:text-black hover:bg-white hover:ease-in duration-700 mt-4  border-2 text-white border-white rounded-xl">Log In</button>
 
                 <p className='py-4 flex' >
                   <span className='text-white'>

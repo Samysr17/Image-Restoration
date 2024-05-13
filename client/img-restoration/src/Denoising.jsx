@@ -103,7 +103,7 @@ const Denoising = () => {
   return (
     <div className="h-auto w-full">
     <div className="colored w-full h-auto">
-        <div className="flex justify-between h-[80px] p-6 w-full  text-white">
+        <div className="flex justify-between h-[80px] p-6 w-full  text-white cursor-pointer">
            <div className="ml-8 name text-2xl">Image Restoratiion</div>
            <div className="flex space-x-16 mr-8">
            
@@ -115,7 +115,7 @@ const Denoising = () => {
            </div>
         </div>
         </div>
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col justify-center items-center cursor-pointer">
      
            <div className="w-[40%] h-[500px] flex flex-col justify-center items-center mt-[5%] border-dashed border-2 border-black">
            
@@ -125,7 +125,6 @@ const Denoising = () => {
         model_1 ?
           <p></p> :(
             <div className="flex flex-col justify-center text-white">
-          
           <p>Drag 'n' drop some files here, or click to select files</p>
           <FaPlusCircle size={20} className="mt-[5%] ml-[49%] items-center text-white mb-8 " />
           </div>
@@ -163,14 +162,14 @@ const Denoising = () => {
                 pauseOnHover
                 theme="light"/>
                 <ToastContainer /> */}
-            <button onClick={handleclick}  className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
-             <button onClick={handledis} className="px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
+            <button onClick={handleclick}  className=" hover:text-black hover:bg-white hover:ease-in duration-700 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Continue</button>
+             <button onClick={handledis} className=" hover:text-black hover:bg-white hover:ease-in duration-700 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Discard</button>
            </div>
         </div>
         {!model_1?<div className="flex flex-col justify-center items-center text-white">
           {/* <div className="flex flex-col"> */}
-           <span >If Image more than 2 kb please Compress</span>
-           <a href="https://imagecompressor.com/"><button className="ml-[20%] mt-4 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Compress Here</button></a>
+           <span >If Image more than 2 kb please compress here</span>
+           <a href="https://imagecompressor.com/"><button className="ml-[20%]  hover:text-black hover:bg-white hover:ease-in duration-700 mt-4 px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">Compress</button></a>
            {/* </div> */}
            </div>:<div></div>}
         {model_1?<div className="mt-8 flex justify-center">
@@ -187,7 +186,7 @@ const Denoising = () => {
         <p className="md:text-2xl text-xl ">Need more information?</p>
         <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
        </div>
-       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+       <button className="md:text-2xl hidden md:flex   hover:text-black hover:bg-white hover:ease-in duration-700 text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
         Contact Us
        </button>
 

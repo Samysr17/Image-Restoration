@@ -95,11 +95,11 @@ const Info = () => {
   return (<div>
     <div className="colored w-full  h-auto">
     <div className="">
-        <div className=" flex justify-between h-[80px] p-6 w-full  text-white">
+        <div className=" flex justify-between h-[80px] p-6 w-full  text-white cursor-pointer">
            <div className="name  text-2xl">Image Restoration</div>
            <div className="hidden md:flex space-x-16 mr-8">
               <Link to="/Profile"><p>{user.email}</p></Link>
-              <button className="bg-white rounded-md  w-24 text-black">{dec} Credits</button>
+              <button className="bg-white rounded-md   w-24 text-black">{dec} Credits</button>
               <p className="cursor-pointer" onClick={handleclick}>Log Out</p>
            </div>
            <div className="md:hidden mr-8">Hamburger</div>
@@ -107,7 +107,7 @@ const Info = () => {
         <div className="md:flex w-full h-screen  ">
             <div className=" flex flex-col  md:w-[70%] justify-center items-center">
               <p className="md:text-4xl text-xl font-semibold md:w-[50%] text-white">Image Restoration: A New Lens to the Past</p>
-            <button className="bg-transparent border-2 border-white text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"> <a href="https://image-inpainting.streamlit.app/">Try Now !</a></button>
+            <button className="bg-transparent border-2  hover:text-black hover:bg-white hover:ease-in duration-700 border-white text-white rounded-xl text-xl py-4 md:mt-16 mt-4 w-[30%] mb-4 md:w-[20%]"> <a href="https://image-inpainting.streamlit.app/">Try Now !</a></button>
             </div>
             <div className="">
             <img-comparison-slider>
@@ -132,7 +132,7 @@ const Info = () => {
             <div className=" bg-gradient-to-l from-[#797676] to-[#040708] flex flex-col  h-auto items-center justify-center gap-4 p-4">
               <p className="text-xl text-white font-semibold">{d.name}</p>
               <p className="text-center text-white">{d.review}</p>
-              <button onClick={()=>handleclick_1(d)} className='bg-transparent mt-  border-2 border-white text-white text-lg px-6 py-1 rounded-xl'>Try Now!</button>
+              <button onClick={()=>handleclick_1(d)} className='bg-transparent mt-  border-2 border-white  hover:text-black hover:bg-white hover:ease-in duration-700 text-white text-lg px-6 py-1 rounded-xl'>Try Now!</button>
             </div>
           </div>
         ))}
@@ -145,12 +145,12 @@ const Info = () => {
         <p className="md:text-2xl text-xl ">Need more information?</p>
         <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
        </div>
-       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl hover:text-black hover:bg-white hover:ease-in duration-700 border-white bg-transparent">
         Contact Us
        </button>
 
        </div>
-       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  text-white  border-2 rounded-xl border-white bg-transparent">
+       <button className="md:hidden w-[50%] items-center ml-[25%] h-[40px] mt-4 mb-4  hover:text-black hover:bg-white hover:ease-in duration-700  text-white  border-2 rounded-xl border-white bg-transparent">
         Contact Us
        </button>
        <div className="hidden md:flex justify-between px-16  py-4">

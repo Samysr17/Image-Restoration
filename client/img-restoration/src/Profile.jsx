@@ -152,7 +152,7 @@ const Profile = () => {
    <>
      <div className="h-auto w-full colored">
     <div className=" w-full h-auto">
-        <div className="flex justify-between h-[80px] p-6 w-full  text-white">
+        <div className="flex justify-between h-[80px] p-6 w-full  text-white cursor-pointer">
            <div className="ml-8 name text-2xl">Image Restoration</div>
            <div className="flex space-x-16 mr-8">
            
@@ -241,7 +241,7 @@ const Profile = () => {
         <p className="md:text-2xl text-xl ">Need more information?</p>
         <p className="mt-2">Write your concern to us and our specialist will get back to you.</p>
        </div>
-       <button className="md:text-2xl hidden md:flex text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
+       <button className="md:text-2xl hidden md:flex  hover:text-black hover:bg-white hover:ease-in duration-700 text-white md:px-6  md:py-3 border-2 rounded-xl border-white bg-transparent">
         Contact Us
        </button>
 

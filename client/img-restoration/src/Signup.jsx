@@ -38,7 +38,7 @@ const Signup = () => {
               <p>Need Help?</p>
             </div> 
             {/* //complete */}
-           <button onClick={handleClick} className="py-3 mt-4 border-white border-2 rounded-xl text-white">Continue</button>
+           <button onClick={handleClick} className="py-3 mt-4  hover:text-black hover:bg-white hover:ease-in duration-700 border-white border-2 rounded-xl text-white">Continue</button>
             <p className='py-4 flex' >
               <span className='text-white'>
                 Already have an account?
