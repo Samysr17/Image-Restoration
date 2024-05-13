@@ -153,7 +153,7 @@ const Restore=()=>{
             <div>{window.performance.now()/10000}<span>s</span></div>
             </div>
             </div>
-            <button onClick={save} className="mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl ">Save</button></div>):<div></div>}
+            <button onClick={save} className=" hover:text-black hover:bg-white hover:ease-in duration-700 mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl ">Save</button></div>):<div></div>}
            </div>
           
            <div className="flex justify-center space-x-4 p-8">

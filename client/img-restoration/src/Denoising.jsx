@@ -142,11 +142,11 @@ const Denoising = () => {
        ))}
            </div>
            {model_1?(<div className="flex-col">
-           <span className="ml-[20%] mt-4 text-white">Denoised Image</span>
+           <span className="ml-[20%] mt-4  text-white">Denoised Image</span>
            <img className="h-[200px]"  src={image} alt=""></img>
            </div>):<div></div>}
            </div>
-           {model_1?(<div><div className="flex text-white mt-4"><span>Done in    :</span><div>{window.performance.now()/1000}</div><span>s</span></div><button onClick={save} className="mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">save</button></div>):<div></div>}
+           {model_1?(<div><div className="flex text-white mt-4"><span>Done in    :</span><div>{window.performance.now()/1000}</div><span>s</span></div><button onClick={save} className="  hover:text-black hover:bg-white hover:ease-in duration-700 mt-8 ml-[20%] px-6 py-2 border-2 border-white bg-transparent text-white rounded-xl">save</button></div>):<div></div>}
            </div>
 
            <div className="flex justify-center space-x-4 p-8">
